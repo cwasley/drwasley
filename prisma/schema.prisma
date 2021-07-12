@@ -1,0 +1,48 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model Consideration {
+  id        Int      @id @default(autoincrement())
+  body      String?
+  symptom   Symptom  @relation(fields: [symptomId], references: [id])
+  symptomId Int
+}
+
+model Member {
+  id        Int       @id @default(autoincrement())
+  name      String?
+  symptoms  Symptom[]
+  tests     Test[]
+}
+
+model Symptom {
+  id             Int             @id @default(autoincrement())
+  name           String?
+  member         Member          @relation(fields: [memberId], references: [id])
+  memberId       Int
+  tests          Test[]
+  considerations Consideration[]
+}
+
+model Test {
+  id                Int       @id @default(autoincrement())
+  name              String?
+  strengths         String?
+  limitations       String?
+  contraindications String?
+  cpt_code          String?
+  format            String?
+  patient_prep      String?
+  member            Member    @relation(fields: [memberId], references: [id])
+  memberId          Int
+  symptoms          Symptom[]
+}
