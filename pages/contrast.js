@@ -80,7 +80,7 @@ export default function Contrast() {
                   </Typography>
                   <Typography paragraph>
                     Oral contrast can interfere with 3D reconstructions of CT angiograms or bone studies.  For this
-                    reason, we may use water ingested just prior to the scan as a "negative" oral contrast agent in CTA,
+                    reason, we may use water ingested just prior to the scan as a &quot;negative&quot; oral contrast agent in CTA,
                     multiphase study of solid organs, mesenteric ischemia studies or pelvic fracture assessments.
                   </Typography>
                   <Typography paragraph>
