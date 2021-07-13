@@ -51,7 +51,8 @@ const useStyles = makeStyles((theme) => ({
   card: {
     maxWidth: 288,
     margin: "16px auto 16px auto",
-    color: "white"
+    color: "white",
+    backgroundColor: "#454545"
   },
   media: {
     height: 288,
