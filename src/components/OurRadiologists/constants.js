@@ -1,13 +1,13 @@
-import amir from '/public/amir.jpeg'
-import ben from '/public/ben.jpeg'
-import dick from '/public/dick.jpeg'
-import elliot from '/public/elliot.jpeg'
-import jeremy from '/public/jeremy.jpeg'
-import jim from '/public/jim.jpeg'
-import jimmy from '/public/jimmy.jpeg'
-import lokesh from '/public/lokesh.jpeg'
-import mike from '/public/mike.jpeg'
-import tk from '/public/tk.jpeg'
+import amir from '/public/radiologists/amir.jpeg'
+import ben from '/public/radiologists/ben.jpeg'
+import dick from '/public/radiologists/dick.jpeg'
+import elliot from '/public/radiologists/elliot.jpeg'
+import jeremy from '/public/radiologists/jeremy.jpeg'
+import jim from '/public/radiologists/jim.jpeg'
+import jimmy from '/public/radiologists/jimmy.jpeg'
+import lokesh from '/public/radiologists/lokesh.jpeg'
+import mike from '/public/radiologists/mike.jpeg'
+import tk from '/public/radiologists/tk.jpeg'
 
 export const radiologistData = [
   {

@@ -29,8 +29,8 @@ import logo from '../public/logo.svg'
 import prisma from '../lib/prisma.ts'
 
 export const getStaticProps = async () => {
-  const considerations = await prisma.consideration.findMany()
-  return { props: { considerations } }
+  const members = await prisma.member.findMany()
+  return { props: { members } }
 }
 
 const useStyles = makeStyles((theme) => ({
@@ -130,17 +130,11 @@ export default function Home(props) {
               open={Boolean(anchorEl)}
               onClose={handleClose}
             >
-              <StyledMenuItem onClick={handleClose}>
+              <StyledMenuItem component={Link} naked href='/contact' onClick={handleClose}>
                 <ListItemIcon>
                   <Call fontSize="small" />
                 </ListItemIcon>
-                <ListItemText primary="Consult My Radiologist" />
-              </StyledMenuItem>
-              <StyledMenuItem onClick={handleClose}>
-                <ListItemIcon>
-                  <ContactPhone fontSize="small" />
-                </ListItemIcon>
-                <ListItemText primary="Call To Schedule" />
+                <ListItemText primary="Contact/Call To Schedule" />
               </StyledMenuItem>
               <StyledMenuItem component={Link} naked href="/our-radiologists" onClick={handleClose}>
                 <ListItemIcon>
@@ -149,20 +143,20 @@ export default function Home(props) {
                 <ListItemText primary="Our Radiologists" />
               </StyledMenuItem>
               <Divider />
-              <StyledMenuItem onClick={handleClose}>
+              <StyledMenuItem component={Link} naked href='/articles' onClick={handleClose}>
                 <ListItemIcon>
                   <Description fontSize="small" />
                 </ListItemIcon>
                 <ListItemText primary="CME Talks/Articles" />
               </StyledMenuItem>
-              <StyledMenuItem onClick={handleClose}>
+              <StyledMenuItem component={Link} naked href='/contrast' onClick={handleClose}>
                 <ListItemIcon>
                   <Help fontSize="small" />
                 </ListItemIcon>
                 <ListItemText primary="Is Oral Contrast Required?" />
               </StyledMenuItem>
               <Divider />
-              <StyledMenuItem onClick={handleClose}>
+              <StyledMenuItem component={Link} naked href='/select-a-test' onClick={handleClose}>
                 <ListItemIcon>
                   <Search fontSize="small" />
                 </ListItemIcon>

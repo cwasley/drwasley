@@ -88,7 +88,7 @@ export default function OurRadiologists() {
       <Container maxWidth="md">
         <div className={classes.toolbar} />
         <Box mt={4}>
-          <Typography align="center" variant="h3" component="h1" gutterBottom>
+          <Typography align="center" variant="h4" component="h1" gutterBottom>
             South Coast Radiology
           </Typography>
           <Grid container justifyContent="center" alignContent="center" spacing={2}>
