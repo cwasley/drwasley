@@ -1,15 +1,17 @@
-import React, { useState } from 'react'
+import React, { Fragment, useState } from 'react'
 import {
   Typography,
-  Box,
-  Container,
   Menu,
   Button,
   MenuItem,
   Grid,
   withStyles,
   ListItemIcon,
-  ListItemText
+  ListItemText,
+  Divider,
+  makeStyles,
+  Container,
+  Box
 } from '@material-ui/core'
 import {
   Call,
@@ -21,14 +23,22 @@ import {
   List
 } from '@material-ui/icons'
 import Image from 'next/image'
-import logo from '../public/logo.svg'
 import Link from '../src/components/Link'
+import Nav from '../src/components/Nav'
+import logo from '../public/logo.svg'
 import prisma from '../lib/prisma.ts'
 
 export const getStaticProps = async () => {
   const considerations = await prisma.consideration.findMany()
   return { props: { considerations } }
 }
+
+const useStyles = makeStyles((theme) => ({
+  root: {
+    flexGrow: 1,
+  },
+  toolbar: theme.mixins.toolbar
+}))
 
 const StyledMenu = withStyles({
   paper: {
@@ -48,7 +58,7 @@ const StyledMenu = withStyles({
     }}
     {...props}
   />
-));
+))
 
 const StyledMenuItem = withStyles((theme) => ({
   root: {
@@ -59,10 +69,11 @@ const StyledMenuItem = withStyles((theme) => ({
       },
     },
   },
-}))(MenuItem);
+}))(MenuItem)
 
 export default function Home(props) {
   const [anchorEl, setAnchorEl] = useState(null)
+  const classes = useStyles()
 
   const handleClick = (e) => {
     setAnchorEl(e.currentTarget)
@@ -71,100 +82,102 @@ export default function Home(props) {
   const handleClose = () => {
     setAnchorEl(null)
   }
+
   return (
-    <Container maxWidth="sm">
-      <Box
-        mt={4}
-        mb={8}
-        alignItems="center"
-        justifyContent="center"
-        display="flex"
-      >
-        <Image
-          src={logo}
-          alt="Memorial Care Logo"
-        />
-      </Box>
-      <Grid
-        container
-        spacing={2}
-        direction="column"
-        alignItems="center"
-        justify="center"
-      >
-        <Grid item xs={12}>
-          <Typography variant="h5" component="h1">
-            What would you like to do?
-          </Typography>
+    <Fragment>
+      <Nav />
+      <Container maxWidth="md">
+        <div className={classes.toolbar} />
+        <Box
+          mt={4}
+          mb={7}
+          alignItems="center"
+          justifyContent="center"
+          display="flex"
+        >
+          <Image
+            src={logo}
+            alt="Memorial Care Logo"
+          />
+        </Box>
+        <Grid
+          container
+          spacing={2}
+          direction="column"
+          alignItems="center"
+          justifyContent="center"
+          display="flex"
+        >
+          <Grid item xs={12}>
+            <Typography align="center" variant="h5" component="h1">
+              What would you like to do?
+            </Typography>
+          </Grid>
+          <Grid item xs={12}>
+            <Button
+              aria-controls="choose-destination"
+              aria-haspopup="true"
+              variant="contained"
+              color="primary"
+              onClick={handleClick}
+            >
+              Select
+            </Button>
+            <StyledMenu
+              id="menu"
+              anchorEl={anchorEl}
+              keepMounted
+              open={Boolean(anchorEl)}
+              onClose={handleClose}
+            >
+              <StyledMenuItem onClick={handleClose}>
+                <ListItemIcon>
+                  <Call fontSize="small" />
+                </ListItemIcon>
+                <ListItemText primary="Consult My Radiologist" />
+              </StyledMenuItem>
+              <StyledMenuItem onClick={handleClose}>
+                <ListItemIcon>
+                  <ContactPhone fontSize="small" />
+                </ListItemIcon>
+                <ListItemText primary="Call To Schedule" />
+              </StyledMenuItem>
+              <StyledMenuItem component={Link} naked href="/our-radiologists" onClick={handleClose}>
+                <ListItemIcon>
+                  <Group fontSize="small" />
+                </ListItemIcon>
+                <ListItemText primary="Our Radiologists" />
+              </StyledMenuItem>
+              <Divider />
+              <StyledMenuItem onClick={handleClose}>
+                <ListItemIcon>
+                  <Description fontSize="small" />
+                </ListItemIcon>
+                <ListItemText primary="CME Talks/Articles" />
+              </StyledMenuItem>
+              <StyledMenuItem onClick={handleClose}>
+                <ListItemIcon>
+                  <Help fontSize="small" />
+                </ListItemIcon>
+                <ListItemText primary="Is Oral Contrast Required?" />
+              </StyledMenuItem>
+              <Divider />
+              <StyledMenuItem onClick={handleClose}>
+                <ListItemIcon>
+                  <Search fontSize="small" />
+                </ListItemIcon>
+                <ListItemText primary="Search Tests" />
+              </StyledMenuItem>
+              <StyledMenuItem onClick={handleClose}>
+                <ListItemIcon>
+                  <List fontSize="small" />
+                </ListItemIcon>
+                <ListItemText primary="Test Index" />
+              </StyledMenuItem>
+            </StyledMenu>
+          </Grid>
         </Grid>
-        <Grid item xs={12}>
-          <Button
-            aria-controls="choose-destination"
-            aria-haspopup="true"
-            variant="contained"
-            color="primary"
-            onClick={handleClick}
-          >
-            Select
-          </Button>
-          <StyledMenu
-            id="menu"
-            anchorEl={anchorEl}
-            keepMounted
-            open={Boolean(anchorEl)}
-            onClose={handleClose}
-          >
-            <StyledMenuItem onClick={handleClose}>
-              <ListItemIcon>
-                <Call fontSize="small" />
-              </ListItemIcon>
-              <ListItemText primary="Consult My Radiologist" />
-            </StyledMenuItem>
-            <StyledMenuItem onClick={handleClose}>
-              <ListItemIcon>
-                <ContactPhone fontSize="small" />
-              </ListItemIcon>
-              <ListItemText primary="Call To Schedule" />
-            </StyledMenuItem>
-            <StyledMenuItem onClick={handleClose}>
-              <ListItemIcon>
-                <Group fontSize="small" />
-              </ListItemIcon>
-              <ListItemText primary="Our Radiologists" />
-            </StyledMenuItem>
-            <StyledMenuItem onClick={handleClose}>
-              <ListItemIcon>
-                <Description fontSize="small" />
-              </ListItemIcon>
-              <ListItemText primary="CME Talks/Articles" />
-            </StyledMenuItem>
-            <StyledMenuItem onClick={handleClose}>
-              <ListItemIcon>
-                <Help fontSize="small" />
-              </ListItemIcon>
-              <ListItemText primary="Is Oral Contrast Required?" />
-            </StyledMenuItem>
-            <StyledMenuItem onClick={handleClose}>
-              <ListItemIcon>
-                <Search fontSize="small" />
-              </ListItemIcon>
-              <ListItemText primary="Search By Study" />
-            </StyledMenuItem>
-            <StyledMenuItem onClick={handleClose}>
-              <ListItemIcon>
-                <Search fontSize="small" />
-              </ListItemIcon>
-              <ListItemText primary="Search By Symptom" />
-            </StyledMenuItem>
-            <StyledMenuItem onClick={handleClose}>
-              <ListItemIcon>
-                <List fontSize="small" />
-              </ListItemIcon>
-              <ListItemText primary="Test Index" />
-            </StyledMenuItem>
-          </StyledMenu>
-        </Grid>
-      </Grid>
-    </Container>
+      </Container>
+    </Fragment>
   )
 }
