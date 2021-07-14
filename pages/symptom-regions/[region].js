@@ -12,7 +12,6 @@ import {
   MenuList,
   Popper,
   ButtonGroup,
-  Tooltip,
   Box,
 } from '@material-ui/core'
 import ArrowDropDownIcon from '@material-ui/icons/ArrowDropDown'
@@ -26,7 +25,6 @@ export const getStaticProps = async (context) => {
       name: context.params.region
     },
     include: {
-      tests: true,
       symptoms: true
     }
   })
@@ -95,7 +93,7 @@ const useStyles = makeStyles((theme) => ({
   }
 }))
 
-export default function Region(props) {
+export default function SymptomRegion(props) {
   const classes = useStyles()
   const [open, setOpen] = useState(false)
   const anchorRef = useRef(null)
@@ -127,7 +125,6 @@ export default function Region(props) {
     prevOpen.current = open
   }, [open])
 
-  const tests = props.member.tests
   const symptoms = props.member.symptoms
 
   return (
@@ -138,7 +135,7 @@ export default function Region(props) {
         <Box mt={4}>
           <div className={classes.flexColumn}>
             <Typography variant="h4" component="h1">
-              Search tests by region:
+              Search symptoms by region:
             </Typography>
             <Button
               ref={anchorRef}
@@ -164,7 +161,7 @@ export default function Region(props) {
                             onClick={handleClose}
                             component={Link}
                             naked
-                            href={`/regions/${member.name}`}
+                            href={`/symptom-regions/${member.name}`}
                           >
                             {member.name}
                           </MenuItem>
@@ -178,54 +175,38 @@ export default function Region(props) {
           </div>
           <Divider />
           <Typography align='center' variant='subtitle1' className={classes.divider}>
-            Choose a test from the list below. If needed, click on {props.member.name.toUpperCase()} to change body
-            region or click &quot;Search by Symptom&quot; to search tests suggested by symptom.
+            Choose a symptom from the list below. If needed, click on {props.member.name.toUpperCase()} to change body
+            region or click &quot;Search by Test&quot; to search all tests for this region.
           </Typography>
           <div className={classes.buttonGroup}>
             <ButtonGroup orientation="vertical" variant="contained" color="primary">
-              {tests.map((test, index) => (
+              {symptoms.map((symptom, index) => (
                 <Button
-                  key={test.name}
+                  key={symptom.name}
                   variant="contained"
                   component={Link}
                   naked
                   color="secondary"
                   size="large"
-                  href={`/tests/${test.id}`}
-                  className={tests.length !== index + 1 && classes.testButton}
+                  href={`/symptoms/${symptom.id}`}
+                  className={symptoms.length !== index + 1 && classes.testButton}
                 >
-                  {test.name}
+                  {symptom.name}
                 </Button>
               ))}
             </ButtonGroup>
           </div>
           <div className={classes.searchButton}>
-            {symptoms.length > 0 && (
-              <Button
-                component={Link}
-                variant="outlined"
-                color="primary"
-                naked
-                size="large"
-                href={`/symptom-regions/${props.member.name}`}
-              >
-                Search by Symptom
-              </Button>
-            )}
-            {symptoms.length === 0 && (
-              <Tooltip open arrow title="No symptoms available for this region" aria-label="add">
-                <span>
-                  <Button
-                    variant="outlined"
-                    color="primary"
-                    size="large"
-                    disabled
-                  >
-                    Search by Symptom
-                  </Button>
-                </span>
-              </Tooltip>
-            )}
+            <Button
+              component={Link}
+              variant="outlined"
+              color="primary"
+              naked
+              size="large"
+              href={`/regions/${props.member.name}`}
+            >
+              Search all tests
+            </Button>
           </div>
         </Box>
       </Container>

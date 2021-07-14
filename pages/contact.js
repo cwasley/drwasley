@@ -9,7 +9,11 @@ import {
   CardMedia,
   Button,
   Grid,
-  Box
+  Table,
+  TableRow,
+  TableCell,
+  Paper,
+  Box,
 } from '@material-ui/core'
 import {
   Call as CallIcon,
@@ -20,6 +24,24 @@ import Nav from '../src/components/Nav'
 import dick from '/public/radiologists/dick.jpeg'
 import ocmc from '/public/hospitals/ocmc.jpg'
 import smc from '/public/hospitals/smc.jpg'
+import prisma from '../lib/prisma.ts'
+
+export const getServerSideProps = async ({ query }) => {
+  let test = {}
+  const { testId } = query
+
+  if (testId) {
+    test = await prisma.test.findFirst({
+      where: {
+        id: parseInt(testId, 10)
+      },
+      include: {
+        member: true
+      }
+    })
+  }
+  return { props: { test } }
+}
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -51,9 +73,10 @@ const useStyles = makeStyles((theme) => ({
   }
 }))
 
-export default function Contact() {
+export default function Contact(props) {
   const classes = useStyles()
-  const theme = useTheme()
+
+  const test = props.test
 
   return (
     <Fragment>
@@ -64,39 +87,79 @@ export default function Contact() {
           <Typography align="center" variant="h4" component="h1" gutterBottom>
             Contact
           </Typography>
-          <Card className={classes.card}>
-            <Grid container spacing={0}>
-              <Grid item xs={12} sm={4} className={classes.image}>
-                <CardMedia className={classes.cover}>
-                  <Image
-                    src={dick}
-                    alt="dr wasley"
-                  />
-                </CardMedia>
+          {!test.id && (
+            <Card className={classes.card}>
+              <Grid container spacing={0}>
+                <Grid item xs={12} sm={4} className={classes.image}>
+                  <CardMedia className={classes.cover}>
+                    <Image
+                      src={dick}
+                      alt="dr wasley"
+                    />
+                  </CardMedia>
+                </Grid>
+                <Grid item xs={12} sm={8}>
+                  <div className={classes.details}>
+                    <CardContent className={classes.content}>
+                      <Typography gutterBottom component="h5" variant="h5">
+                        Dick Wasley, MD
+                      </Typography>
+                      <div className={classes.callButton}>
+                        <Button variant="outlined" color="secondary" href="tel:+1-949-683-5396">
+                          <TextsmsIcon className={classes.icon}/>
+                          Call: +1 (949) 683-5396
+                        </Button>
+                      </div>
+                      <div className={classes.callButton}>
+                        <Button variant="outlined" color="secondary" href="sms:+1-949-683-5396">
+                          <CallIcon className={classes.icon}/>
+                          Text: +1 (949) 683-5396
+                        </Button>
+                      </div>
+                    </CardContent>
+                  </div>
+                </Grid>
               </Grid>
-              <Grid item xs={12} sm={8}>
-                <div className={classes.details}>
-                  <CardContent className={classes.content}>
-                    <Typography gutterBottom component="h5" variant="h5">
-                      Dick Wasley, MD
-                    </Typography>
-                    <div className={classes.callButton}>
-                      <Button variant="outlined" color="secondary" href="tel:+1-949-683-5396">
-                        <TextsmsIcon className={classes.icon}/>
-                        Call: +1 (949) 683-5396
-                      </Button>
-                    </div>
-                    <div className={classes.callButton}>
-                      <Button variant="outlined" color="secondary" href="sms:+1-949-683-5396">
-                        <CallIcon className={classes.icon}/>
-                        Text: +1 (949) 683-5396
-                      </Button>
-                    </div>
-                  </CardContent>
-                </div>
-              </Grid>
-            </Grid>
-          </Card>
+            </Card>
+          )}
+          {test.id && (
+            <Paper>
+              <Table>
+                <TableRow>
+                  <TableCell variant="head">Test Name</TableCell>
+                  <TableCell>{test.name}</TableCell>
+                </TableRow>
+                <TableRow>
+                  <TableCell variant="head">Body Region</TableCell>
+                  <TableCell>{test.member.name}</TableCell>
+                </TableRow>
+                <TableRow>
+                  <TableCell variant="head">Strengths</TableCell>
+                  <TableCell>{test.strengths}</TableCell>
+                </TableRow>
+                <TableRow>
+                  <TableCell variant="head">Limitations</TableCell>
+                  <TableCell>{test.limitations}</TableCell>
+                </TableRow>
+                <TableRow>
+                  <TableCell variant="head">Contraindications</TableCell>
+                  <TableCell>{test.contraindications}</TableCell>
+                </TableRow>
+                <TableRow>
+                  <TableCell variant="head">CPT Code</TableCell>
+                  <TableCell>{test.cpt_code}</TableCell>
+                </TableRow>
+                <TableRow>
+                  <TableCell variant="head">Exact format for order to be authorized</TableCell>
+                  <TableCell>{test.format}</TableCell>
+                </TableRow>
+                <TableRow>
+                  <TableCell variant="head">Patient Preparation</TableCell>
+                  <TableCell>{test.patient_prep}</TableCell>
+                </TableRow>
+              </Table>
+            </Paper>
+          )}
           <Card className={classes.card}>
             <Grid container spacing={0}>
               <Grid item xs={12} sm={4} className={classes.image}>

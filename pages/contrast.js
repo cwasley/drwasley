@@ -2,7 +2,6 @@ import React, { Fragment } from 'react'
 import {
   Typography,
   makeStyles,
-  useTheme,
   Container,
   Paper,
   Accordion,

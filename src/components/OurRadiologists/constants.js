@@ -11,16 +11,16 @@ import tk from '/public/radiologists/tk.jpeg'
 
 export const radiologistData = [
   {
+    img: dick,
+    title: 'Dick Wasley, MD'
+  },
+  {
     img: amir,
     title: 'Amir Ronaghi, MD'
   },
   {
     img: ben,
     title: 'Ben Lee, MD'
-  },
-  {
-    img: dick,
-    title: 'Dick Wasley, MD'
   },
   {
     img: elliot,
