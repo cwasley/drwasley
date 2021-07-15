@@ -88,7 +88,7 @@ const useStyles = makeStyles((theme) => ({
   searchButton: {
     display: 'flex',
     justifyContent: 'center',
-    marginTop: 32
+    margin: "16px 0"
   },
   testButton: {
     marginBottom: 8
@@ -138,7 +138,7 @@ export default function Region(props) {
         <Box mt={4}>
           <div className={classes.flexColumn}>
             <Typography variant="h4" component="h1">
-              Search tests by region:
+              Search Tests by Region:
             </Typography>
             <Button
               ref={anchorRef}
@@ -177,28 +177,6 @@ export default function Region(props) {
             </Popper>
           </div>
           <Divider />
-          <Typography align='center' variant='subtitle1' className={classes.divider}>
-            Choose a test from the list below. If needed, click on {props.member.name.toUpperCase()} to change body
-            region or click &quot;Search by Symptom&quot; to search tests suggested by symptom.
-          </Typography>
-          <div className={classes.buttonGroup}>
-            <ButtonGroup orientation="vertical" variant="contained" color="primary">
-              {tests.map((test, index) => (
-                <Button
-                  key={test.name}
-                  variant="contained"
-                  component={Link}
-                  naked
-                  color="secondary"
-                  size="large"
-                  href={`/tests/${test.id}`}
-                  className={tests.length !== index + 1 && classes.testButton}
-                >
-                  {test.name}
-                </Button>
-              ))}
-            </ButtonGroup>
-          </div>
           <div className={classes.searchButton}>
             {symptoms.length > 0 && (
               <Button
@@ -226,6 +204,28 @@ export default function Region(props) {
                 </span>
               </Tooltip>
             )}
+          </div>
+          <Typography align='center' variant='subtitle1' className={classes.divider}>
+            Choose a test from the list below. If needed, click on {props.member.name.toUpperCase()} to change body
+            region or click &quot;Search by Symptom&quot; to search tests suggested by symptom.
+          </Typography>
+          <div className={classes.buttonGroup}>
+            <ButtonGroup orientation="vertical" variant="contained" color="primary">
+              {tests.map((test, index) => (
+                <Button
+                  key={test.name}
+                  variant="contained"
+                  component={Link}
+                  naked
+                  color="secondary"
+                  size="large"
+                  href={`/tests/${test.id}`}
+                  className={tests.length !== index + 1 && classes.testButton}
+                >
+                  {test.name}
+                </Button>
+              ))}
+            </ButtonGroup>
           </div>
         </Box>
       </Container>

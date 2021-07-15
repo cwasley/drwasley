@@ -41,6 +41,9 @@ const useStyles = makeStyles((theme) => ({
   },
   infoIcon: {
     marginRight: 8
+  },
+  regionButton: {
+    borderBottom: "none !important"
   }
 }))
 
@@ -71,15 +74,15 @@ export default function SelectATest(props) {
           </Typography>
           <Grid container spacing={3}>
             <GridWithXXS item xxs={12} xs={6}>
-              <ButtonGroup orientation="vertical" variant="contained" color="primary" className={classes.regions}>
+              <ButtonGroup orientation="vertical" variant="text" color="secondary" className={classes.regions}>
                 {members.map((member, index) => (
                   <Button
                     key={member.name}
-                    variant="outlined"
+                    variant="text"
                     component={Link}
-                    naked
                     size="large"
                     href={`/regions/${member.name}`}
+                    className={classes.regionButton}
                   >
                     {member.name.charAt(0).toUpperCase() + member.name.slice(1)}
                   </Button>
