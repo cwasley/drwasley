@@ -15,7 +15,6 @@ import {
 } from '@material-ui/core'
 import {
   Call,
-  ContactPhone,
   Group,
   Description,
   Help,
@@ -59,17 +58,6 @@ const StyledMenu = withStyles({
     {...props}
   />
 ))
-
-const StyledMenuItem = withStyles((theme) => ({
-  root: {
-    '&:focus': {
-      backgroundColor: theme.palette.primary.main,
-      '& .MuiListItemIcon-root, & .MuiListItemText-primary': {
-        color: theme.palette.common.white,
-      },
-    },
-  },
-}))(MenuItem)
 
 export default function Home(props) {
   const [anchorEl, setAnchorEl] = useState(null)
@@ -130,44 +118,44 @@ export default function Home(props) {
               open={Boolean(anchorEl)}
               onClose={handleClose}
             >
-              <StyledMenuItem component={Link} naked href='/contact' onClick={handleClose}>
+              <MenuItem component={Link} naked href='/contact' onClick={handleClose}>
                 <ListItemIcon>
                   <Call fontSize="small" />
                 </ListItemIcon>
                 <ListItemText primary="Contact/Call To Schedule" />
-              </StyledMenuItem>
-              <StyledMenuItem component={Link} naked href="/our-radiologists" onClick={handleClose}>
+              </MenuItem>
+              <MenuItem component={Link} naked href="/our-radiologists" onClick={handleClose}>
                 <ListItemIcon>
                   <Group fontSize="small" />
                 </ListItemIcon>
                 <ListItemText primary="Our Radiologists" />
-              </StyledMenuItem>
+              </MenuItem>
               <Divider />
-              <StyledMenuItem component={Link} naked href='/articles' onClick={handleClose}>
+              <MenuItem component={Link} naked href='/articles' onClick={handleClose}>
                 <ListItemIcon>
                   <Description fontSize="small" />
                 </ListItemIcon>
                 <ListItemText primary="CME Talks/Articles" />
-              </StyledMenuItem>
-              <StyledMenuItem component={Link} naked href='/contrast' onClick={handleClose}>
+              </MenuItem>
+              <MenuItem component={Link} naked href='/contrast' onClick={handleClose}>
                 <ListItemIcon>
                   <Help fontSize="small" />
                 </ListItemIcon>
                 <ListItemText primary="Is Oral Contrast Required?" />
-              </StyledMenuItem>
+              </MenuItem>
               <Divider />
-              <StyledMenuItem component={Link} naked href='/select-a-test' onClick={handleClose}>
+              <MenuItem component={Link} naked href='/select-a-test' onClick={handleClose}>
                 <ListItemIcon>
                   <Search fontSize="small" />
                 </ListItemIcon>
                 <ListItemText primary="Search Tests" />
-              </StyledMenuItem>
-              <StyledMenuItem onClick={handleClose}>
+              </MenuItem>
+              <MenuItem component={Link} naked href='/test-index' onClick={handleClose}>
                 <ListItemIcon>
                   <List fontSize="small" />
                 </ListItemIcon>
                 <ListItemText primary="Test Index" />
-              </StyledMenuItem>
+              </MenuItem>
             </StyledMenu>
           </Grid>
         </Grid>

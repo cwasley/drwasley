@@ -8,17 +8,40 @@ import {
   CardMedia,
   Button,
   Grid,
-  Box,
+  Table,
+  TableRow,
+  TableCell,
+  Paper,
+  Box, Toolbar, Divider, ListItem, ListItemIcon, ListItemText, AccordionSummary, AccordionDetails, Accordion,
 } from '@material-ui/core'
 import {
-  Call as CallIcon,
+  EmojiObjects as EmojiObjectsIcon, ExpandLess as ExpandLessIcon, ExpandMore as ExpandMoreIcon,
   Textsms as TextsmsIcon
 } from '@material-ui/icons'
 import Image from 'next/image'
-import Nav from '../src/components/Nav'
-import dick from '/public/radiologists/dick.jpeg'
+import Nav from '../../src/components/Nav'
 import ocmc from '/public/hospitals/ocmc.jpg'
 import smc from '/public/hospitals/smc.jpg'
+import prisma from '../../lib/prisma.ts'
+
+export const getStaticProps = async (context) => {
+  const test = await prisma.test.findFirst({
+    where: {
+      id: parseInt(context.params.test, 10)
+    }
+  })
+  return { props: { test } }
+}
+
+export async function getStaticPaths() {
+  const tests = await prisma.test.findMany()
+
+  const paths = tests.map((test) => ({
+    params: { test: test.id.toString() },
+  }))
+
+  return { paths, fallback: false }
+}
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -47,11 +70,15 @@ const useStyles = makeStyles((theme) => ({
   },
   image: {
     padding: 0
+  },
+  tableTitle: {
+    flex: '1 1 100%',
   }
 }))
 
-export default function Contact() {
+export default function Contact(props) {
   const classes = useStyles()
+  const test = props.test
 
   return (
     <Fragment>
@@ -59,42 +86,38 @@ export default function Contact() {
       <Container maxWidth="md">
         <div className={classes.toolbar} />
         <Box mt={4}>
-          <Typography align="center" variant="h4" component="h1" gutterBottom>
-            Contact
+          <Typography align="center" variant="h4" component="h1" gutterBottom paragraph>
+            Schedule Your Test
           </Typography>
-          <Card className={classes.card}>
-            <Grid container spacing={0}>
-              <Grid item xs={12} sm={4} className={classes.image}>
-                <CardMedia className={classes.cover}>
-                  <Image
-                    src={dick}
-                    alt="dr wasley"
-                  />
-                </CardMedia>
-              </Grid>
-              <Grid item xs={12} sm={8}>
-                <div className={classes.details}>
-                  <CardContent className={classes.content}>
-                    <Typography gutterBottom component="h5" variant="h5">
-                      Dick Wasley, MD
-                    </Typography>
-                    <div className={classes.callButton}>
-                      <Button variant="outlined" color="secondary" href="tel:+1-949-683-5396">
-                        <TextsmsIcon className={classes.icon}/>
-                        Call: +1 (949) 683-5396
-                      </Button>
-                    </div>
-                    <div className={classes.callButton}>
-                      <Button variant="outlined" color="secondary" href="sms:+1-949-683-5396">
-                        <CallIcon className={classes.icon}/>
-                        Text: +1 (949) 683-5396
-                      </Button>
-                    </div>
-                  </CardContent>
-                </div>
-              </Grid>
-            </Grid>
-          </Card>
+          <Paper>
+            <Accordion defaultExpanded>
+              <AccordionSummary
+                expandIcon={<ExpandMoreIcon />}
+                aria-controls="panel1a-content"
+                id="panel1a-header"
+              >
+                <Typography className={classes.title} variant="h6" id="tableTitle" component="div">
+                  Test Details
+                </Typography>
+              </AccordionSummary>
+              <AccordionDetails>
+                <Table>
+                  <TableRow>
+                    <TableCell variant="head">Test Name</TableCell>
+                    <TableCell>{test.name}</TableCell>
+                  </TableRow>
+                  <TableRow>
+                    <TableCell variant="head">CPT Code</TableCell>
+                    <TableCell>{test.cpt_code}</TableCell>
+                  </TableRow>
+                  <TableRow>
+                    <TableCell variant="head">Exact format for order to be authorized</TableCell>
+                    <TableCell>{test.format}</TableCell>
+                  </TableRow>
+                </Table>
+              </AccordionDetails>
+            </Accordion>
+          </Paper>
           <Card className={classes.card}>
             <Grid container spacing={0}>
               <Grid item xs={12} sm={4} className={classes.image}>

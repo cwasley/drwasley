@@ -14,6 +14,7 @@ import {
   CardContent,
   CardActionArea,
   CardMedia,
+  Paper,
   Box
 } from '@material-ui/core'
 import {
@@ -40,7 +41,6 @@ const useStyles = makeStyles((theme) => ({
     width: '100%',
     maxWidth: 600,
     color: 'black',
-    backgroundColor: theme.palette.lightBackground.main,
     justifyContent: "center",
     alignContent: "center",
     margin: "32px auto",
@@ -91,146 +91,147 @@ export default function OurRadiologists() {
           <Typography align="center" variant="h4" component="h1" gutterBottom>
             South Coast Radiology
           </Typography>
-          <Grid container justifyContent="center" alignContent="center" spacing={2}>
-            <Grid item xs={12}>
-              <ClickAwayListener onClickAway={handleClickAway}>
-                <List
-                  component="nav"
-                  className={classes.lists}
-                >
-                  <ListItem button onClick={() => toggleList('expertise')}>
-                    <ListItemIcon>
-                      <EmojiObjectsIcon />
-                    </ListItemIcon>
-                    <ListItemText primary="Areas of Expertise" />
-                    {state['expertise'] ? <ExpandLessIcon /> : <ExpandMoreIcon />}
-                  </ListItem>
-                  <Collapse in={state['expertise']} timeout="auto" unmountOnExit>
-                    <List component="div" disablePadding>
-                      {/* TODO pull from constants*/}
-                      <ListItem className={classes.nested}>
-                        <ListItemText primary="CT Myelography" />
-                      </ListItem>
-                      <ListItem className={classes.nested}>
-                        <ListItemText primary="Bone Marrow Biopsy" />
-                      </ListItem>
-                      <ListItem className={classes.nested}>
-                        <ListItemText primary="CT and MRI Arthrography" />
-                      </ListItem>
-                      <ListItem className={classes.nested}>
-                        <ListItemText primary="Biliary and Renal Disease" />
-                      </ListItem>
-                      <ListItem className={classes.nested}>
-                        <ListItemText primary="Dialysis Access" />
-                      </ListItem>
-                      <ListItem className={classes.nested}>
-                        <ListItemText primary="Deep Vein Thrombosis treatment" />
-                      </ListItem>
-                      <ListItem className={classes.nested}>
-                        <ListItemText primary="Tumor Ablation Therapy" />
-                      </ListItem>
-                      <ListItem className={classes.nested}>
-                        <ListItemText primary="Peripheral Arterial Disease" />
-                      </ListItem>
-                      <ListItem className={classes.nested}>
-                        <ListItemText primary="Pelvic Congestion Syndrome" />
-                      </ListItem>
-                      <ListItem className={classes.nested}>
-                        <ListItemText primary="Renal Artery Stenosis" />
-                      </ListItem>
-                      <ListItem className={classes.nested}>
-                        <ListItemText primary="Image Guided Biopsies and Marker Placement" />
-                      </ListItem>
-                      <ListItem className={classes.nested}>
-                        <ListItemText primary="Pain Management" />
-                      </ListItem>
-                      <ListItem className={classes.nested}>
-                        <ListItemText primary="Testicular Varicocele" />
-                      </ListItem>
-                      <ListItem className={classes.nested}>
-                        <ListItemText primary="Uterine Fibroids" />
-                      </ListItem>
-                      <ListItem className={classes.nested}>
-                        <ListItemText primary="Varicose Veins" />
-                      </ListItem>
-                      <ListItem className={classes.nested}>
-                        <ListItemText primary="Vascular Imaging" />
-                      </ListItem>
-                      <ListItem className={classes.nested}>
-                        <ListItemText primary="Venous Access" />
-                      </ListItem>
-                      <ListItem className={classes.nested}>
-                        <ListItemText primary="CT and MRI Angiography" />
-                      </ListItem>
-                    </List>
-                  </Collapse>
-                  <ListItem button onClick={() => toggleList('services')}>
-                    <ListItemIcon>
-                      <WorkIcon />
-                    </ListItemIcon>
-                    <ListItemText primary="Specialized Services" />
-                    {state['services'] ? <ExpandLessIcon /> : <ExpandMoreIcon />}
-                  </ListItem>
-                  <Collapse in={state['services']} timeout="auto" unmountOnExit>
-                    <List component="div" disablePadding>
-                      {/* TODO pull from constants*/}
-                      <ListItem className={classes.nested}>
-                        <ListItemText primary="Digital PACS" />
-                      </ListItem>
-                      <ListItem className={classes.nested}>
-                        <ListItemText primary="Interventional cath lab with rotational and CT angiography" />
-                      </ListItem>
-                      <ListItem className={classes.nested}>
-                        <ListItemText primary="64 row volume CT scanner" />
-                      </ListItem>
-                      <ListItem className={classes.nested}>
-                        <ListItemText primary="High Field and Large Bore MRI" />
-                      </ListItem>
-                      <ListItem className={classes.nested}>
-                        <ListItemText primary="Computer Assisted Diagnosis and Interventional Guidance" />
-                      </ListItem>
-                      <ListItem className={classes.nested}>
-                        <ListItemText primary="3D Imaging Lab" />
-                      </ListItem>
-                      <ListItem className={classes.nested}>
-                        <ListItemText primary="Subspecialty interpretation" />
-                      </ListItem>
-                      <ListItem className={classes.nested}>
-                        <ListItemText primary="2nd opinion consultation" />
-                      </ListItem>
-                    </List>
-                  </Collapse>
-                  <ListItem button onClick={() => toggleList('values')}>
-                    <ListItemIcon>
-                      <ThumbUpIcon />
-                    </ListItemIcon>
-                    <ListItemText primary="Corporate Values" />
-                    {state['values'] ? <ExpandLessIcon /> : <ExpandMoreIcon />}
-                  </ListItem>
-                  <Collapse in={state['values']} timeout="auto" unmountOnExit>
-                    <List component="div" disablePadding>
-                      {/* TODO pull from constants*/}
-                      <ListItem className={classes.nested}>
-                        <ListItemText primary="Seamlessly integrated and comprehensive radiology service." />
-                      </ListItem>
-                      <ListItem className={classes.nested}>
-                        <ListItemText primary="Prompt, high quality structured reporting." />
-                      </ListItem>
-                      <ListItem className={classes.nested}>
-                        <ListItemText primary="Leadership committed to alignment, collaboration and consistent service." />
-                      </ListItem>
-                      <ListItem className={classes.nested}>
-                        <ListItemText primary="Partners in marketing, growth and fostering MemorialCare initiatives." />
-                      </ListItem>
-                      <ListItem className={classes.nested}>
-                        <ListItemText primary="Patient safety. Evidence based radiology. Education of staff" />
-                      </ListItem>
-                    </List>
-                  </Collapse>
-                </List>
-              </ClickAwayListener>
+          <Paper className={classes.lists}>
+            <Grid container justifyContent="center" alignContent="center" spacing={2}>
+              <Grid item xs={12}>
+                <ClickAwayListener onClickAway={handleClickAway}>
+                  <List
+                    component="nav"
+                  >
+                    <ListItem button onClick={() => toggleList('expertise')}>
+                      <ListItemIcon>
+                        <EmojiObjectsIcon />
+                      </ListItemIcon>
+                      <ListItemText primary="Areas of Expertise" />
+                      {state['expertise'] ? <ExpandLessIcon /> : <ExpandMoreIcon />}
+                    </ListItem>
+                    <Collapse in={state['expertise']} timeout="auto" unmountOnExit>
+                      <List component="div" disablePadding>
+                        {/* TODO pull from constants*/}
+                        <ListItem className={classes.nested}>
+                          <ListItemText primary="CT Myelography" />
+                        </ListItem>
+                        <ListItem className={classes.nested}>
+                          <ListItemText primary="Bone Marrow Biopsy" />
+                        </ListItem>
+                        <ListItem className={classes.nested}>
+                          <ListItemText primary="CT and MRI Arthrography" />
+                        </ListItem>
+                        <ListItem className={classes.nested}>
+                          <ListItemText primary="Biliary and Renal Disease" />
+                        </ListItem>
+                        <ListItem className={classes.nested}>
+                          <ListItemText primary="Dialysis Access" />
+                        </ListItem>
+                        <ListItem className={classes.nested}>
+                          <ListItemText primary="Deep Vein Thrombosis treatment" />
+                        </ListItem>
+                        <ListItem className={classes.nested}>
+                          <ListItemText primary="Tumor Ablation Therapy" />
+                        </ListItem>
+                        <ListItem className={classes.nested}>
+                          <ListItemText primary="Peripheral Arterial Disease" />
+                        </ListItem>
+                        <ListItem className={classes.nested}>
+                          <ListItemText primary="Pelvic Congestion Syndrome" />
+                        </ListItem>
+                        <ListItem className={classes.nested}>
+                          <ListItemText primary="Renal Artery Stenosis" />
+                        </ListItem>
+                        <ListItem className={classes.nested}>
+                          <ListItemText primary="Image Guided Biopsies and Marker Placement" />
+                        </ListItem>
+                        <ListItem className={classes.nested}>
+                          <ListItemText primary="Pain Management" />
+                        </ListItem>
+                        <ListItem className={classes.nested}>
+                          <ListItemText primary="Testicular Varicocele" />
+                        </ListItem>
+                        <ListItem className={classes.nested}>
+                          <ListItemText primary="Uterine Fibroids" />
+                        </ListItem>
+                        <ListItem className={classes.nested}>
+                          <ListItemText primary="Varicose Veins" />
+                        </ListItem>
+                        <ListItem className={classes.nested}>
+                          <ListItemText primary="Vascular Imaging" />
+                        </ListItem>
+                        <ListItem className={classes.nested}>
+                          <ListItemText primary="Venous Access" />
+                        </ListItem>
+                        <ListItem className={classes.nested}>
+                          <ListItemText primary="CT and MRI Angiography" />
+                        </ListItem>
+                      </List>
+                    </Collapse>
+                    <ListItem button onClick={() => toggleList('services')}>
+                      <ListItemIcon>
+                        <WorkIcon />
+                      </ListItemIcon>
+                      <ListItemText primary="Specialized Services" />
+                      {state['services'] ? <ExpandLessIcon /> : <ExpandMoreIcon />}
+                    </ListItem>
+                    <Collapse in={state['services']} timeout="auto" unmountOnExit>
+                      <List component="div" disablePadding>
+                        {/* TODO pull from constants*/}
+                        <ListItem className={classes.nested}>
+                          <ListItemText primary="Digital PACS" />
+                        </ListItem>
+                        <ListItem className={classes.nested}>
+                          <ListItemText primary="Interventional cath lab with rotational and CT angiography" />
+                        </ListItem>
+                        <ListItem className={classes.nested}>
+                          <ListItemText primary="64 row volume CT scanner" />
+                        </ListItem>
+                        <ListItem className={classes.nested}>
+                          <ListItemText primary="High Field and Large Bore MRI" />
+                        </ListItem>
+                        <ListItem className={classes.nested}>
+                          <ListItemText primary="Computer Assisted Diagnosis and Interventional Guidance" />
+                        </ListItem>
+                        <ListItem className={classes.nested}>
+                          <ListItemText primary="3D Imaging Lab" />
+                        </ListItem>
+                        <ListItem className={classes.nested}>
+                          <ListItemText primary="Subspecialty interpretation" />
+                        </ListItem>
+                        <ListItem className={classes.nested}>
+                          <ListItemText primary="2nd opinion consultation" />
+                        </ListItem>
+                      </List>
+                    </Collapse>
+                    <ListItem button onClick={() => toggleList('values')}>
+                      <ListItemIcon>
+                        <ThumbUpIcon />
+                      </ListItemIcon>
+                      <ListItemText primary="Corporate Values" />
+                      {state['values'] ? <ExpandLessIcon /> : <ExpandMoreIcon />}
+                    </ListItem>
+                    <Collapse in={state['values']} timeout="auto" unmountOnExit>
+                      <List component="div" disablePadding>
+                        {/* TODO pull from constants*/}
+                        <ListItem className={classes.nested}>
+                          <ListItemText primary="Seamlessly integrated and comprehensive radiology service." />
+                        </ListItem>
+                        <ListItem className={classes.nested}>
+                          <ListItemText primary="Prompt, high quality structured reporting." />
+                        </ListItem>
+                        <ListItem className={classes.nested}>
+                          <ListItemText primary="Leadership committed to alignment, collaboration and consistent service." />
+                        </ListItem>
+                        <ListItem className={classes.nested}>
+                          <ListItemText primary="Partners in marketing, growth and fostering MemorialCare initiatives." />
+                        </ListItem>
+                        <ListItem className={classes.nested}>
+                          <ListItemText primary="Patient safety. Evidence based radiology. Education of staff" />
+                        </ListItem>
+                      </List>
+                    </Collapse>
+                  </List>
+                </ClickAwayListener>
+              </Grid>
             </Grid>
-          </Grid>
+          </Paper>
           <Grid container spacing={3}>
             {radiologistData.map((item, index) => (
               <Grid item key={`image-${index}`} xs={12} sm={6} md={4}>

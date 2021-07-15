@@ -3,7 +3,6 @@ import {
   Typography,
   makeStyles,
   Container,
-  Divider,
   Table,
   TableRow,
   TableCell,
@@ -71,6 +70,10 @@ const useStyles = makeStyles((theme) => ({
   }
 }))
 
+const titleCase = (str) => {
+  return str.replace(/\w\S*/g, (t) => { return t.charAt(0).toUpperCase() + t.substr(1) })
+}
+
 export default function Test(props) {
   const classes = useStyles()
 
@@ -83,7 +86,7 @@ export default function Test(props) {
         <div className={classes.toolbar} />
         <Box mt={4}>
           <Typography align="center" variant="h4" component="h1" className={classes.divider}>
-            {test.name}
+            {titleCase(test.name)}
           </Typography>
           <Paper>
             <Table>
@@ -130,7 +133,7 @@ export default function Test(props) {
               color="secondary"
               naked
               size="large"
-              href={`/contact?testId=${test.id}`}
+              href={`/contact/${test.id}`}
             >
               Order this test
             </Button>

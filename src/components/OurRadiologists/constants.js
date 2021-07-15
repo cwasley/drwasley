@@ -15,39 +15,39 @@ export const radiologistData = [
     title: 'Dick Wasley, MD'
   },
   {
-    img: amir,
-    title: 'Amir Ronaghi, MD'
-  },
-  {
-    img: ben,
-    title: 'Ben Lee, MD'
+    img: lokesh,
+    title: 'Lokesh Arora, MD'
   },
   {
     img: elliot,
     title: 'Elliot Fankuchen, MD'
   },
   {
-    img: jeremy,
-    title: 'Jeremy Szymanowski, MD'
+    img: ben,
+    title: 'Ben Lee, MD'
+  },
+  {
+    img: tk,
+    title: 'T K Meng, MD'
+  },
+  {
+    img: amir,
+    title: 'Amir Ronaghi, MD'
   },
   {
     img: jim,
     title: 'Jim Sutherland, MD'
   },
   {
-    img: jimmy,
-    title: 'Jimmy Wong, MD'
-  },
-  {
-    img: lokesh,
-    title: 'Lokesh Arora, MD'
+    img: jeremy,
+    title: 'Jeremy Szymanowski, MD'
   },
   {
     img: mike,
     title: 'Mike Wang, MD'
   },
   {
-    img: tk,
-    title: 'T K Meng, MD'
-  }
+    img: jimmy,
+    title: 'Jimmy Wong, MD'
+  },
 ]

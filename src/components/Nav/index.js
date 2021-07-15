@@ -16,7 +16,6 @@ import {
   Menu as MenuIcon,
   Home as HomeIcon,
   Call as CallIcon,
-  ContactPhone as ContactPhoneIcon,
   Group as GroupIcon,
   Description as DescriptionIcon,
   Help as HelpIcon,
@@ -51,7 +50,7 @@ export default function Nav() {
   const drawer = (
     <div>
       <List>
-        <ListItem button component={Link} href='/'>
+        <ListItem button naked component={Link} href='/'>
           <ListItemIcon>
             <HomeIcon />
           </ListItemIcon>
@@ -60,19 +59,13 @@ export default function Nav() {
       </List>
       <Divider />
       <List>
-        <ListItem button>
+        <ListItem button naked component={Link} href='/contact'>
           <ListItemIcon>
             <CallIcon />
           </ListItemIcon>
-          <ListItemText primary='Consult My Radiologist' />
+          <ListItemText primary='Contact' />
         </ListItem>
-        <ListItem button>
-          <ListItemIcon>
-            <ContactPhoneIcon />
-          </ListItemIcon>
-          <ListItemText primary='Call To Schedule' />
-        </ListItem>
-        <ListItem button>
+        <ListItem button naked component={Link} href='/our-radiologists'>
           <ListItemIcon>
             <GroupIcon />
           </ListItemIcon>
@@ -81,13 +74,13 @@ export default function Nav() {
       </List>
       <Divider />
       <List>
-        <ListItem button>
+        <ListItem button naked component={Link} href='/articles'>
           <ListItemIcon>
             <DescriptionIcon />
           </ListItemIcon>
           <ListItemText primary='CME Talks/Articles' />
         </ListItem>
-        <ListItem button>
+        <ListItem button naked component={Link} href='/contrast'>
           <ListItemIcon>
             <HelpIcon />
           </ListItemIcon>
@@ -96,13 +89,13 @@ export default function Nav() {
       </List>
       <Divider />
       <List>
-        <ListItem button>
+        <ListItem button naked component={Link} href='/select-a-test'>
           <ListItemIcon>
             <SearchIcon />
           </ListItemIcon>
           <ListItemText primary='Search Tests' />
         </ListItem>
-        <ListItem button>
+        <ListItem button naked component={Link} href='/test-index'>
           <ListItemIcon>
             <ListIcon />
           </ListItemIcon>

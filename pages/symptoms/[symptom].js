@@ -3,7 +3,6 @@ import {
   Typography,
   makeStyles,
   Container,
-  Divider,
   Table,
   TableRow,
   TableCell,
@@ -14,8 +13,6 @@ import {
 import Nav from '../../src/components/Nav'
 import prisma from '../../lib/prisma.ts'
 import Link from '../../src/components/Link'
-import hand from '../../public/hand.svg'
-import Image from 'next/image'
 
 export const getStaticProps = async (context) => {
   const symptom = await prisma.symptom.findFirst({

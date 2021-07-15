@@ -30,7 +30,7 @@ const useStyles = makeStyles((theme) => ({
   heading2: {
     fontSize: theme.typography.pxToRem(24),
     fontWeight: theme.typography.fontWeightBold,
-    color: "red"
+    color: theme.palette.secondary.main
   },
   details: {
     display: 'flex',
