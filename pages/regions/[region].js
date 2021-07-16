@@ -137,7 +137,7 @@ export default function Region(props) {
         <div className={classes.toolbar} />
         <Box mt={4}>
           <div className={classes.flexColumn}>
-            <Typography variant="h4" component="h1">
+            <Typography variant="h4" component="h1" align='center'>
               Search Tests by Region:
             </Typography>
             <Button

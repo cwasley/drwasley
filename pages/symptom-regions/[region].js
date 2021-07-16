@@ -134,7 +134,7 @@ export default function SymptomRegion(props) {
         <div className={classes.toolbar} />
         <Box mt={4}>
           <div className={classes.flexColumn}>
-            <Typography variant="h4" component="h1">
+            <Typography variant="h4" component="h1" align="center">
               Search symptoms by region:
             </Typography>
             <Button
@@ -146,11 +146,11 @@ export default function SymptomRegion(props) {
               </Typography>
               <ArrowDropDownIcon style={{ fontSize: 30 }} />
             </Button>
-            <Popper open={open} anchorEl={anchorRef.current} role={undefined} transition>
+            <Popper open={open} anchorEl={anchorRef.current} role={undefined} transition placement='bottom'>
               {({ TransitionProps, placement }) => (
                 <Grow
                   {...TransitionProps}
-                  style={{ transformOrigin: placement === 'bottom' ? 'center top' : 'center bottom' }}
+                  style={{ transformOrigin: 'center top' }}
                 >
                   <Paper>
                     <ClickAwayListener onClickAway={handleClose}>
