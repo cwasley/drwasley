@@ -83,7 +83,8 @@ const useStyles = makeStyles((theme) => ({
   buttonGroup: {
     alignContent: 'center',
     display: 'flex',
-    justifyContent: 'center'
+    justifyContent: 'center',
+    marginBottom: 32,
   },
   searchButton: {
     display: 'flex',
@@ -92,7 +93,10 @@ const useStyles = makeStyles((theme) => ({
   },
   testButton: {
     marginBottom: 8
-  }
+  },
+  buttonContainer: {
+    border: "none !important"
+  },
 }))
 
 export default function Region(props) {
@@ -191,18 +195,14 @@ export default function Region(props) {
               </Button>
             )}
             {symptoms.length === 0 && (
-              <Tooltip open arrow title="No symptoms available for this region" aria-label="add">
-                <span>
-                  <Button
-                    variant="outlined"
-                    color="primary"
-                    size="large"
-                    disabled
-                  >
-                    Search by Symptom
-                  </Button>
-                </span>
-              </Tooltip>
+              <Button
+                variant="outlined"
+                color="primary"
+                size="large"
+                disabled
+              >
+                Search by Symptom
+              </Button>
             )}
           </div>
           <Typography align='center' variant='subtitle1' className={classes.divider}>

@@ -81,7 +81,8 @@ const useStyles = makeStyles((theme) => ({
   buttonGroup: {
     alignContent: 'center',
     display: 'flex',
-    justifyContent: 'center'
+    justifyContent: 'center',
+    marginBottom: 32
   },
   searchButton: {
     display: 'flex',
@@ -90,7 +91,10 @@ const useStyles = makeStyles((theme) => ({
   },
   testButton: {
     marginBottom: 8
-  }
+  },
+  buttonContainer: {
+    border: "none !important"
+  },
 }))
 
 export default function SymptomRegion(props) {
@@ -181,18 +185,19 @@ export default function SymptomRegion(props) {
           <div className={classes.buttonGroup}>
             <ButtonGroup orientation="vertical" variant="contained" color="primary">
               {symptoms.map((symptom, index) => (
-                <Button
-                  key={symptom.name}
-                  variant="contained"
-                  component={Link}
-                  naked
-                  color="secondary"
-                  size="large"
-                  href={`/symptoms/${symptom.id}`}
-                  className={symptoms.length !== index + 1 && classes.testButton}
-                >
-                  {symptom.name}
-                </Button>
+                <Typography key={symptom.name} align='center' className={classes.buttonContainer}>
+                  <Button
+                    variant="contained"
+                    component={Link}
+                    naked
+                    color="secondary"
+                    size="large"
+                    href={`/symptoms/${symptom.id}`}
+                    className={symptoms.length !== index + 1 && classes.testButton}
+                  >
+                    {symptom.name}
+                  </Button>
+                </Typography>
               ))}
             </ButtonGroup>
           </div>
