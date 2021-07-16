@@ -38,7 +38,7 @@ const useStyles = makeStyles((theme) => ({
   },
   toolbar: theme.mixins.toolbar,
   divider: {
-    marginBottom: 48,
+    marginBottom: 32,
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center'
@@ -54,6 +54,9 @@ const useStyles = makeStyles((theme) => ({
     display: 'flex',
     justifyContent: 'center',
     marginBottom: 32
+  },
+  buttonContainer: {
+    border: "none !important"
   },
   testButton: {
     marginBottom: 8
@@ -71,7 +74,7 @@ export default function TestIndex(props) {
         <div className={classes.toolbar} />
         <Box mt={4}>
           <div className={classes.flexColumn}>
-            <Typography variant="h4" component="h1">
+            <Typography variant="h4" component="h1" gutterBottom align="center">
               Available Test Index
             </Typography>
           </div>
@@ -79,18 +82,20 @@ export default function TestIndex(props) {
           <div className={classes.buttonGroup}>
             <ButtonGroup orientation="vertical" variant="contained" color="primary">
               {tests.map((test, index) => (
-                <Button
-                  key={test.name}
-                  variant="contained"
-                  component={Link}
-                  naked
-                  color="secondary"
-                  size="large"
-                  href={`/tests/${test.id}`}
-                  className={tests.length !== index + 1 && classes.testButton}
-                >
-                  {test.name}
-                </Button>
+                <Typography key={test.name} align='center' className={classes.buttonContainer}>
+                  <Button
+                    variant="contained"
+                    component={Link}
+                    naked
+                    fullWidth
+                    color="secondary"
+                    size="large"
+                    href={`/tests/${test.id}`}
+                    className={tests.length !== index + 1 && classes.testButton}
+                  >
+                    {test.name}
+                  </Button>
+                </Typography>
               ))}
             </ButtonGroup>
           </div>

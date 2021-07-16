@@ -8,7 +8,9 @@ import {
   TableCell,
   Paper,
   Button,
-  Box, ButtonGroup,
+  ButtonGroup,
+  Divider,
+  Box,
 } from '@material-ui/core'
 import Nav from '../../src/components/Nav'
 import prisma from '../../lib/prisma.ts'
@@ -44,7 +46,7 @@ const useStyles = makeStyles((theme) => ({
   },
   toolbar: theme.mixins.toolbar,
   divider: {
-    marginBottom: 48
+    marginBottom: 32
   },
   member: {
     cursor: "pointer"
@@ -70,18 +72,22 @@ const useStyles = makeStyles((theme) => ({
   buttonGroup: {
     alignContent: 'center',
     display: 'flex',
-    justifyContent: 'center'
+    justifyContent: 'center',
+    marginBottom: 16
   },
   searchButton: {
     display: 'flex',
     justifyContent: 'center',
     marginTop: 32
   },
-  testButton: {
+  testButtonMargin: {
     marginBottom: 8
   },
+  buttonContainer: {
+    border: "none !important"
+  },
   helpfulTests: {
-    margin: 32,
+    margin: "32px 0",
     padding: 16
   },
   forOther: {
@@ -99,19 +105,16 @@ export default function Test(props) {
 
   const symptom = props.symptom
 
-  const considerationText = symptom.considerations[1] ?
-    `${symptom.considerations[0].body}\n\n${symptom.considerations[1].body}` :
-    symptom.considerations[0].body
-
   return (
     <Fragment>
       <Nav />
       <Container maxWidth="md">
         <div className={classes.toolbar} />
         <Box mt={4}>
-          <Typography align="center" variant="h4" component="h1" className={classes.divider}>
+          <Typography align="center" variant="h4" component="h1" gutterBottom>
             {titleCase(symptom.name)}
           </Typography>
+          <Divider className={classes.divider}/>
           <Paper>
             <Table>
               <TableRow>
@@ -135,32 +138,32 @@ export default function Test(props) {
           </Paper>
           <Paper className={classes.helpfulTests}>
             <Typography align="center" variant="h6" gutterBottom>
-              Tests that may be helpful, based on ACR appropriateness criteria:
+              Tests that may be helpful, in order of ACR appropriateness criteria:
             </Typography>
             <div className={classes.buttonGroup}>
               <ButtonGroup orientation="vertical" variant="contained" color="primary">
-                {symptom.tests.map((test, index) => {
-                  return test.cpt_code ?
+                {symptom.tests.map((test, index) => (
+                  <Typography key={test.name} align='center' className={classes.buttonContainer}>
                     <Button
-                      key={test.name}
                       variant="contained"
                       component={Link}
                       naked
+                      fullWidth
                       color="secondary"
                       size="large"
-                      disabled={test.name.toLowerCase().startsWith('for other considerations')}
+                      disabled={!test.cpt_code}
                       href={`/tests/${test.id}`}
-                      className={symptom.tests.length !== index + 1 && classes.testButton}
+                      className={symptom.tests.length !== index + 1 && classes.testButtonMargin}
                     >
                       {test.name}
                     </Button>
-                    :
-                    <Typography color="red" className={classes.forOther} key={test.name} align="center" variant="subheading">
-                      {test.name}
-                    </Typography>
-                })}
+                  </Typography>
+                ))}
               </ButtonGroup>
             </div>
+            <Typography align="center" variant="subtitle2" gutterBottom>
+              For other considerations, call or text radiologist.
+            </Typography>
           </Paper>
         </Box>
       </Container>

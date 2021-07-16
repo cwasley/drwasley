@@ -8,7 +8,7 @@ import {
   TableCell,
   Paper,
   Button,
-  Box,
+  Box, Divider,
 } from '@material-ui/core'
 import Nav from '../../src/components/Nav'
 import prisma from '../../lib/prisma.ts'
@@ -45,7 +45,7 @@ const useStyles = makeStyles((theme) => ({
   },
   toolbar: theme.mixins.toolbar,
   divider: {
-    marginBottom: 48
+    marginBottom: 32
   },
   member: {
     cursor: "pointer"
@@ -85,9 +85,10 @@ export default function Test(props) {
       <Container maxWidth="md">
         <div className={classes.toolbar} />
         <Box mt={4}>
-          <Typography align="center" variant="h4" component="h1" className={classes.divider}>
+          <Typography align="center" variant="h4" component="h1" gutterBottom>
             {titleCase(test.name)}
           </Typography>
+          <Divider className={classes.divider}/>
           <Paper>
             <Table>
               <TableRow>

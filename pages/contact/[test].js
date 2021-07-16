@@ -52,6 +52,9 @@ const useStyles = makeStyles((theme) => ({
     display: "flex",
     margin: "32px 0"
   },
+  divider: {
+    marginBottom: 32
+  },
   details: {
     display: "flex",
     flexDirection: "column"
@@ -86,9 +89,10 @@ export default function Contact(props) {
       <Container maxWidth="md">
         <div className={classes.toolbar} />
         <Box mt={4}>
-          <Typography align="center" variant="h4" component="h1" gutterBottom paragraph>
+          <Typography align="center" variant="h4" component="h1" gutterBottom>
             Schedule Your Test
           </Typography>
+          <Divider className={classes.divider}/>
           <Paper>
             <Accordion defaultExpanded>
               <AccordionSummary

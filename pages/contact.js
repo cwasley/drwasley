@@ -27,7 +27,7 @@ const useStyles = makeStyles((theme) => ({
   toolbar: theme.mixins.toolbar,
   card: {
     display: "flex",
-    margin: "32px 0"
+    margin: "32px 0",
   },
   details: {
     display: "flex",
@@ -46,7 +46,16 @@ const useStyles = makeStyles((theme) => ({
     maxWidth: 288
   },
   image: {
-    padding: 0
+    padding: 0,
+    display: 'flex',
+    justifyContent: 'center'
+  },
+  detailsGrid: {
+    [theme.breakpoints.down('xs')]: {
+      justifyContent: 'center',
+      display: 'flex',
+      textAlign: 'center'
+    },
   }
 }))
 
@@ -62,93 +71,95 @@ export default function Contact() {
           <Typography align="center" variant="h4" component="h1" gutterBottom>
             Contact
           </Typography>
-          <Card className={classes.card}>
-            <Grid container spacing={0}>
-              <Grid item xs={12} sm={4} className={classes.image}>
-                <CardMedia className={classes.cover}>
-                  <Image
-                    src={dick}
-                    alt="dr wasley"
-                  />
-                </CardMedia>
+          <div>
+            <Card className={classes.card}>
+              <Grid container spacing={0}>
+                <Grid item xs={12} sm={4} className={classes.image}>
+                  <CardMedia className={classes.cover}>
+                    <Image
+                      src={dick}
+                      alt="dr wasley"
+                    />
+                  </CardMedia>
+                </Grid>
+                <Grid item xs={12} sm={8} className={classes.detailsGrid}>
+                  <div className={classes.details}>
+                    <CardContent className={classes.content}>
+                      <Typography gutterBottom component="h5" variant="h5">
+                        Dick Wasley, MD
+                      </Typography>
+                      <div className={classes.callButton}>
+                        <Button variant="outlined" color="secondary" href="tel:+1-949-683-5396">
+                          <TextsmsIcon className={classes.icon}/>
+                          Call: +1 (949) 683-5396
+                        </Button>
+                      </div>
+                      <div className={classes.callButton}>
+                        <Button variant="outlined" color="secondary" href="sms:+1-949-683-5396">
+                          <CallIcon className={classes.icon}/>
+                          Text: +1 (949) 683-5396
+                        </Button>
+                      </div>
+                    </CardContent>
+                  </div>
+                </Grid>
               </Grid>
-              <Grid item xs={12} sm={8}>
-                <div className={classes.details}>
-                  <CardContent className={classes.content}>
-                    <Typography gutterBottom component="h5" variant="h5">
-                      Dick Wasley, MD
-                    </Typography>
-                    <div className={classes.callButton}>
-                      <Button variant="outlined" color="secondary" href="tel:+1-949-683-5396">
-                        <TextsmsIcon className={classes.icon}/>
-                        Call: +1 (949) 683-5396
-                      </Button>
-                    </div>
-                    <div className={classes.callButton}>
-                      <Button variant="outlined" color="secondary" href="sms:+1-949-683-5396">
-                        <CallIcon className={classes.icon}/>
-                        Text: +1 (949) 683-5396
-                      </Button>
-                    </div>
-                  </CardContent>
-                </div>
+            </Card>
+            <Card className={classes.card}>
+              <Grid container spacing={0}>
+                <Grid item xs={12} sm={4} className={classes.image}>
+                  <CardMedia className={classes.cover}>
+                    <Image
+                      src={ocmc}
+                      alt="ocmc"
+                    />
+                  </CardMedia>
+                </Grid>
+                <Grid item xs={12} sm={8} className={classes.detailsGrid}>
+                  <div className={classes.details}>
+                    <CardContent className={classes.content}>
+                      <Typography gutterBottom component="h5" variant="h5">
+                        Orange Coast Medical Center
+                      </Typography>
+                      <div className={classes.callButton}>
+                        <Button variant="outlined" color="secondary" href="tel:+1-714-593-2719">
+                          <TextsmsIcon className={classes.icon}/>
+                          Call to Schedule: +1 (714) 593-2719
+                        </Button>
+                      </div>
+                    </CardContent>
+                  </div>
+                </Grid>
               </Grid>
-            </Grid>
-          </Card>
-          <Card className={classes.card}>
-            <Grid container spacing={0}>
-              <Grid item xs={12} sm={4} className={classes.image}>
-                <CardMedia className={classes.cover}>
-                  <Image
-                    src={ocmc}
-                    alt="ocmc"
-                  />
-                </CardMedia>
+            </Card>
+            <Card className={classes.card}>
+              <Grid container spacing={0}>
+                <Grid item xs={12} sm={4} className={classes.image}>
+                  <CardMedia className={classes.cover}>
+                    <Image
+                      src={smc}
+                      alt="smc"
+                    />
+                  </CardMedia>
+                </Grid>
+                <Grid item xs={12} sm={8} className={classes.detailsGrid}>
+                  <div className={classes.details}>
+                    <CardContent className={classes.content}>
+                      <Typography gutterBottom component="h5" variant="h5">
+                        Saddleback Medical Center
+                      </Typography>
+                      <div className={classes.callButton}>
+                        <Button variant="outlined" color="secondary" href="tel:+1-949-452-3648">
+                          <TextsmsIcon className={classes.icon}/>
+                          Call to Schedule: +1 (949) 452-3648
+                        </Button>
+                      </div>
+                    </CardContent>
+                  </div>
+                </Grid>
               </Grid>
-              <Grid item xs={12} sm={8}>
-                <div className={classes.details}>
-                  <CardContent className={classes.content}>
-                    <Typography gutterBottom component="h5" variant="h5">
-                      Orange Coast Medical Center
-                    </Typography>
-                    <div className={classes.callButton}>
-                      <Button variant="outlined" color="secondary" href="tel:+1-714-593-2719">
-                        <TextsmsIcon className={classes.icon}/>
-                        Call to Schedule: +1 (714) 593-2719
-                      </Button>
-                    </div>
-                  </CardContent>
-                </div>
-              </Grid>
-            </Grid>
-          </Card>
-          <Card className={classes.card}>
-            <Grid container spacing={0}>
-              <Grid item xs={12} sm={4} className={classes.image}>
-                <CardMedia className={classes.cover}>
-                  <Image
-                    src={smc}
-                    alt="smc"
-                  />
-                </CardMedia>
-              </Grid>
-              <Grid item xs={12} sm={8}>
-                <div className={classes.details}>
-                  <CardContent className={classes.content}>
-                    <Typography gutterBottom component="h5" variant="h5">
-                      Saddleback Medical Center
-                    </Typography>
-                    <div className={classes.callButton}>
-                      <Button variant="outlined" color="secondary" href="tel:+1-949-452-3648">
-                        <TextsmsIcon className={classes.icon}/>
-                        Call to Schedule: +1 (949) 452-3648
-                      </Button>
-                    </div>
-                  </CardContent>
-                </div>
-              </Grid>
-            </Grid>
-          </Card>
+            </Card>
+          </div>
         </Box>
       </Container>
     </Fragment>

@@ -58,7 +58,7 @@ const useStyles = makeStyles((theme) => ({
   },
   toolbar: theme.mixins.toolbar,
   divider: {
-    marginBottom: 48,
+    marginBottom: 32,
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center'

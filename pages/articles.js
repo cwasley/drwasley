@@ -74,7 +74,7 @@ export default function Articles() {
           <Typography align="center" variant="h4" component="h1" gutterBottom>
             CME Talks & Articles
           </Typography>
-          <Divider className={classes.divider} />
+          <Divider />
           <Paper className={classes.lists}>
             <Grid container justifyContent="center" alignContent="center" spacing={2}>
               <Grid item xs={12}>
