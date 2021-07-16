@@ -212,18 +212,20 @@ export default function Region(props) {
           <div className={classes.buttonGroup}>
             <ButtonGroup orientation="vertical" variant="contained" color="primary">
               {tests.map((test, index) => (
-                <Button
-                  key={test.name}
-                  variant="contained"
-                  component={Link}
-                  naked
-                  color="secondary"
-                  size="large"
-                  href={`/tests/${test.id}`}
-                  className={tests.length !== index + 1 && classes.testButton}
-                >
-                  {test.name}
-                </Button>
+                <Typography key={test.name} align='center' className={classes.buttonContainer}>
+                  <Button
+                    key={test.name}
+                    variant="contained"
+                    component={Link}
+                    naked
+                    color="secondary"
+                    size="large"
+                    href={`/tests/${test.id}`}
+                    className={tests.length !== index + 1 && classes.testButton}
+                  >
+                    {test.name}
+                  </Button>
+                </Typography>
               ))}
             </ButtonGroup>
           </div>
