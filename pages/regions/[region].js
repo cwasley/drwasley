@@ -218,6 +218,7 @@ export default function Region(props) {
                     variant="contained"
                     component={Link}
                     naked
+                    fullWidth
                     color="secondary"
                     size="large"
                     href={`/tests/${test.id}`}

@@ -190,6 +190,7 @@ export default function SymptomRegion(props) {
                     variant="contained"
                     component={Link}
                     naked
+                    fullWidth
                     color="secondary"
                     size="large"
                     href={`/symptoms/${symptom.id}`}
