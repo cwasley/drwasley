@@ -1,6 +1,7 @@
 import React, { useEffect, Fragment } from 'react'
 import PropTypes from 'prop-types'
 import Head from 'next/head'
+import { useRouter } from 'next/router'
 import { ThemeProvider } from '@material-ui/core/styles'
 import { CssBaseline } from '@material-ui/core'
 import theme from '../src/theme'
