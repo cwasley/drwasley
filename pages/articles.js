@@ -18,30 +18,21 @@ import {
   ExpandLess as ExpandLessIcon,
   Description as DescriptionIcon
 } from '@mui/icons-material'
-import { makeStyles } from '@mui/styles'
+import { styled } from '@mui/material/styles'
 import Nav from '../src/components/Nav'
 import Link from '../src/components/Link'
+import { scr, cme, coastlines } from '../src/components/Articles/constants'
+import { Offset } from '../src/components/Offset'
 
-const useStyles = makeStyles((theme) => ({
-  root: {
-    flexGrow: 1,
-  },
-  toolbar: theme.mixins.toolbar,
-  content: {
-    flexGrow: 1,
-    padding: theme.spacing(3),
-  },
-  lists: {
-    width: '100%',
-    maxWidth: 600,
-    color: 'black',
-    justifyContent: "center",
-    alignContent: "center",
-    margin: "32px auto",
-  },
-  nested: {
-    paddingLeft: theme.spacing(4),
-  }
+const NestedListItem = styled((props) => (
+  <ListItem
+    component={Link}
+    target="_blank"
+    rel="noopener"
+    {...props}
+  />
+))(({ theme }) => ({
+  paddingLeft: theme.spacing(4),
 }))
 
 export default function Articles() {
@@ -63,20 +54,25 @@ export default function Articles() {
     })
   }
 
-  const classes = useStyles()
-
   return (
     <Fragment>
       <Nav />
+      <Offset />
       <Container maxWidth="md">
-        <div className={classes.toolbar} />
         <Box mt={4}>
           <Typography align="center" variant="h4" component="h1" gutterBottom>
             CME Talks & Articles
           </Typography>
           <Divider />
-          <Paper className={classes.lists}>
-            <Grid container justifyContent="center" alignContent="center" spacing={2}>
+          <Paper sx={{
+            width: '100%',
+            maxWidth: 600,
+            color: 'black',
+            justifyContent: "center",
+            alignContent: "center",
+            margin: "16px auto",
+          }}>
+            <Grid container justifyContent="center" alignContent="center">
               <Grid item xs={12}>
                 <ClickAwayListener onClickAway={handleClickAway}>
                   <List
@@ -91,17 +87,11 @@ export default function Articles() {
                     </ListItem>
                     <Collapse in={state['scr']} timeout="auto" unmountOnExit>
                       <List component="div" disablePadding>
-                        {/* TODO pull from constants*/}
-                        <ListItem
-                          className={classes.nested}
-                          component={Link}
-                          naked
-                          href="https://collin-wasley.s3.us-west-1.amazonaws.com/articles/scr_1.pdf"
-                          target="_blank"
-                          rel="noopener"
-                        >
-                          <ListItemText primary="Concierge radiology - conceptual design" />
-                        </ListItem>
+                        {scr.map((s, index) => (
+                          <NestedListItem key={`scr-${index}`} href={s.link}>
+                            <ListItemText primary={s.text} />
+                          </NestedListItem>
+                        ))}
                       </List>
                     </Collapse>
                     <ListItem button onClick={() => toggleList('cme')}>
@@ -113,57 +103,11 @@ export default function Articles() {
                     </ListItem>
                     <Collapse in={state['cme']} timeout="auto" unmountOnExit>
                       <List component="div" disablePadding>
-                        {/* TODO pull from constants*/}
-                        <ListItem
-                          className={classes.nested}
-                          component={Link}
-                          naked
-                          href="https://collin-wasley.s3.us-west-1.amazonaws.com/articles/cme_1.pdf"
-                          target="_blank"
-                          rel="noopener"
-                        >
-                          <ListItemText primary='"Shedding Light" on appropriate imaging tests' />
-                        </ListItem>
-                        <ListItem
-                          className={classes.nested}
-                          component={Link}
-                          naked
-                          href="https://collin-wasley.s3.us-west-1.amazonaws.com/articles/cme_2.pdf"
-                          target="_blank"
-                          rel="noopener"
-                        >
-                          <ListItemText primary='CT angiography / conventional angiography correlation' />
-                        </ListItem>
-                        <ListItem
-                          className={classes.nested}
-                          component={Link}
-                          naked
-                          href="https://collin-wasley.s3.us-west-1.amazonaws.com/articles/cme_3.pdf"
-                          target="_blank"
-                          rel="noopener"
-                        >
-                          <ListItemText primary='Lung Cancer Screening' />
-                        </ListItem>
-                        <ListItem
-                          className={classes.nested}
-                          component={Link}
-                          naked
-                          href="https://collin-wasley.s3.us-west-1.amazonaws.com/articles/cme_4.pdf"
-                          target="_blank"
-                          rel="noopener"
-                        >
-                          <ListItemText primary='The role of radiology in cancer diagnosis and treatment' />
-                        </ListItem>
-                        <ListItem
-                          className={classes.nested}
-                          component={Link}
-                          naked
-                          href="https://collin-wasley.s3.us-west-1.amazonaws.com/articles/cme_5.pdf"
-                          target="_blank"
-                          rel="noopener"
-                        >
-                          <ListItemText primary='Basic principles of chest Xray interpretation' />
-                        </ListItem>
+                        {cme.map((c, index) => (
+                          <NestedListItem key={`cme-${index}`} href={c.link}>
+                            <ListItemText primary={c.text} />
+                          </NestedListItem>
+                        ))}
                       </List>
                     </Collapse>
                     <ListItem button onClick={() => toggleList('coastlines')}>
@@ -175,177 +119,11 @@ export default function Articles() {
                     </ListItem>
                     <Collapse in={state['coastlines']} timeout="auto" unmountOnExit>
                       <List component="div" disablePadding>
-                        {/* TODO pull from constants*/}
-                        <ListItem
-                          className={classes.nested}
-                          component={Link}
-                          naked
-                          href="https://collin-wasley.s3.us-west-1.amazonaws.com/articles/coast_1.pdf"
-                          target="_blank"
-                          rel="noopener"
-                        >
-                          <ListItemText primary="Clinical decision support. Is it time now?" />
-                        </ListItem>
-                        <ListItem
-                          className={classes.nested}
-                          component={Link}
-                          naked
-                          href="https://collin-wasley.s3.us-west-1.amazonaws.com/articles/coast_2.pdf"
-                          target="_blank"
-                          rel="noopener"
-                        >
-                          <ListItemText primary="Quality in Radiology" />
-                        </ListItem>
-                        <ListItem
-                          className={classes.nested}
-                          component={Link}
-                          naked
-                          href="https://collin-wasley.s3.us-west-1.amazonaws.com/articles/coast_3.pdf"
-                          target="_blank"
-                          rel="noopener"
-                        >
-                          <ListItemText primary="Radiation Dose Reduction" />
-                        </ListItem>
-                        <ListItem
-                          className={classes.nested}
-                          component={Link}
-                          naked
-                          href="https://collin-wasley.s3.us-west-1.amazonaws.com/articles/coast_4.pdf"
-                          target="_blank"
-                          rel="noopener"
-                        >
-                          <ListItemText primary="How radiologists limit radiation exposure" />
-                        </ListItem>
-                        <ListItem
-                          className={classes.nested}
-                          component={Link}
-                          naked
-                          href="https://collin-wasley.s3.us-west-1.amazonaws.com/articles/coast_5.pdf"
-                          target="_blank"
-                          rel="noopener"
-                        >
-                          <ListItemText primary='Do we need a "complete CT" with AND without contrast?' />
-                        </ListItem>
-                        <ListItem
-                          className={classes.nested}
-                          component={Link}
-                          naked
-                          href="https://collin-wasley.s3.us-west-1.amazonaws.com/articles/coast_6.pdf"
-                          target="_blank"
-                          rel="noopener"
-                        >
-                          <ListItemText primary="Abdominal CT - When is contrast important?" />
-                        </ListItem>
-                        <ListItem
-                          className={classes.nested}
-                          component={Link}
-                          naked
-                          href="https://collin-wasley.s3.us-west-1.amazonaws.com/articles/coast_7.pdf"
-                          target="_blank"
-                          rel="noopener"
-                        >
-                          <ListItemText primary="Best Practice Guidelines - abdominal" />
-                        </ListItem>
-                        <ListItem
-                          className={classes.nested}
-                          component={Link}
-                          naked
-                          href="https://collin-wasley.s3.us-west-1.amazonaws.com/articles/coast_8.pdf"
-                          target="_blank"
-                          rel="noopener"
-                        >
-                          <ListItemText primary="Best Practice Guidelines - chest" />
-                        </ListItem>
-                        <ListItem
-                          className={classes.nested}
-                          component={Link}
-                          naked
-                          href="https://collin-wasley.s3.us-west-1.amazonaws.com/articles/coast_9.pdf"
-                          target="_blank"
-                          rel="noopener"
-                        >
-                          <ListItemText primary="Best Practice Guidelines - brain and spine" />
-                        </ListItem>
-                        <ListItem
-                          className={classes.nested}
-                          component={Link}
-                          naked
-                          href="https://collin-wasley.s3.us-west-1.amazonaws.com/articles/coast_10.pdf"
-                          target="_blank"
-                          rel="noopener"
-                        >
-                          <ListItemText primary="Appropriate indications for CXR" />
-                        </ListItem>
-                        <ListItem
-                          className={classes.nested}
-                          component={Link}
-                          naked
-                          href="https://collin-wasley.s3.us-west-1.amazonaws.com/articles/coast_11.pdf"
-                          target="_blank"
-                          rel="noopener"
-                        >
-                          <ListItemText primary="CT lung screening" />
-                        </ListItem>
-                        <ListItem
-                          className={classes.nested}
-                          component={Link}
-                          naked
-                          href="https://collin-wasley.s3.us-west-1.amazonaws.com/articles/coast_12.pdf"
-                          target="_blank"
-                          rel="noopener"
-                        >
-                          <ListItemText primary="3D imaging" />
-                        </ListItem>
-                        <ListItem
-                          className={classes.nested}
-                          component={Link}
-                          naked
-                          href="https://collin-wasley.s3.us-west-1.amazonaws.com/articles/coast_13.pdf"
-                          target="_blank"
-                          rel="noopener"
-                        >
-                          <ListItemText primary="PET/CT indications" />
-                        </ListItem>
-                        <ListItem
-                          className={classes.nested}
-                          component={Link}
-                          naked
-                          href="https://collin-wasley.s3.us-west-1.amazonaws.com/articles/coast_14.pdf"
-                          target="_blank"
-                          rel="noopener"
-                        >
-                          <ListItemText primary="is CT or MRI overutilized" />
-                        </ListItem>
-                        <ListItem
-                          className={classes.nested}
-                          component={Link}
-                          naked
-                          href="https://collin-wasley.s3.us-west-1.amazonaws.com/articles/coast_15.pdf"
-                          target="_blank"
-                          rel="noopener"
-                        >
-                          <ListItemText primary="Renal cell Cancer" />
-                        </ListItem>
-                        <ListItem
-                          className={classes.nested}
-                          component={Link}
-                          naked
-                          href="https://collin-wasley.s3.us-west-1.amazonaws.com/articles/coast_16.pdf"
-                          target="_blank"
-                          rel="noopener"
-                        >
-                          <ListItemText primary="Uterine Fibroid Embolization therapy" />
-                        </ListItem>
-                        <ListItem
-                          className={classes.nested}
-                          component={Link}
-                          naked
-                          href="https://collin-wasley.s3.us-west-1.amazonaws.com/articles/coast_17.pdf"
-                          target="_blank"
-                          rel="noopener"
-                        >
-                          <ListItemText primary="Capabilites of the CT scanner at OCMMC" />
-                        </ListItem>
+                        {coastlines.map((c, index) => (
+                          <NestedListItem key={`coastlines-${index}`} href={c.link}>
+                            <ListItemText primary={c.text} />
+                          </NestedListItem>
+                        ))}
                       </List>
                     </Collapse>
                   </List>

@@ -11,6 +11,46 @@ import richard from '/public/radiologists/richard wasley MD.png'
 import steven from '/public/radiologists/steven lee MD.png'
 import tk from '/public/radiologists/tke-kong meng MD.png'
 
+export const expertise = [
+  'CT Myelography',
+  'Bone Marrow Biopsy',
+  'CT and MRI Arthrography',
+  'Biliary and Renal Disease',
+  'Dialysis Access',
+  'Deep Vein Thrombosis Treatment',
+  'Tumor Ablation Therapy',
+  'Peripheral Arterial Disease',
+  'Pelvic Congestion Syndrome',
+  'Renal Artery Stenosis',
+  'Image Guided Biopsies and Marker Placement',
+  'Pain Management',
+  'Testicular Varicocele',
+  'Uterine Fibroids',
+  'Varicose Veins',
+  'Vascular Imaging',
+  'Venous Access',
+  'CT and MRI Angiography',
+]
+
+export const services = [
+  'Digital PACS',
+  'Interventional cath lab with rotational and CT angiography',
+  '64 row volume CT scanner',
+  'High Field and Large Bore MRI',
+  'Computer Assisted Diagnosis and Interventional Guidance',
+  '3D Imaging Lab',
+  'Subspecialty interpretation',
+  '2nd opinion consultation',
+]
+
+export const values = [
+  'Seamlessly integrated and comprehensive radiology service.',
+  'Prompt, high quality structured reporting.',
+  'Leadership committed to alignment, collaboration and consistent service.',
+  'Partners in marketing, growth and fostering MemorialCare initiatives.',
+  'Patient safety. Evidence based radiology. Education of staff.',
+]
+
 export const radiologistData = [
   {
     img: tk,
