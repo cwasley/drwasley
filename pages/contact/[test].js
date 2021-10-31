@@ -21,12 +21,12 @@ import {
   ExpandMore as ExpandMoreIcon,
   Textsms as TextsmsIcon,
 } from '@mui/icons-material'
-import { makeStyles } from '@mui/styles'
 import Image from 'next/image'
 import Nav from '../../src/components/Nav'
 import ocmc from '/public/hospitals/ocmc.jpg'
 import smc from '/public/hospitals/smc.jpg'
 import prisma from '../../lib/prisma.ts'
+import { Offset } from '../../src/components/Offset'
 
 export const getStaticProps = async (context) => {
   const test = await prisma.test.findFirst({
@@ -47,56 +47,19 @@ export async function getStaticPaths() {
   return { paths, fallback: false }
 }
 
-const useStyles = makeStyles((theme) => ({
-  root: {
-    flexGrow: 1,
-  },
-  toolbar: theme.mixins.toolbar,
-  card: {
-    display: "flex",
-    margin: "32px 0"
-  },
-  divider: {
-    marginBottom: 32
-  },
-  details: {
-    display: "flex",
-    flexDirection: "column"
-  },
-  content: {
-    flex: '1 0 auto'
-  },
-  callButton: {
-    margin: "16px 0"
-  },
-  icon: {
-    marginRight: '4px'
-  },
-  cover: {
-    maxWidth: 288
-  },
-  image: {
-    padding: 0
-  },
-  tableTitle: {
-    flex: '1 1 100%',
-  }
-}))
-
 export default function Contact(props) {
-  const classes = useStyles()
   const test = props.test
 
   return (
     <Fragment>
       <Nav />
+      <Offset />
       <Container maxWidth="md">
-        <div className={classes.toolbar} />
         <Box mt={4}>
           <Typography align="center" variant="h4" component="h1" gutterBottom>
             Schedule Your Test
           </Typography>
-          <Divider className={classes.divider}/>
+          <Divider sx={{ mb: '32px' }}/>
           <Paper>
             <Accordion defaultExpanded>
               <AccordionSummary
@@ -104,7 +67,7 @@ export default function Contact(props) {
                 aria-controls="panel1a-content"
                 id="panel1a-header"
               >
-                <Typography className={classes.title} variant="h6" id="tableTitle" component="div">
+                <Typography variant="h6" id="tableTitle" component="div">
                   Test Details
                 </Typography>
               </AccordionSummary>
@@ -126,10 +89,10 @@ export default function Contact(props) {
               </AccordionDetails>
             </Accordion>
           </Paper>
-          <Card className={classes.card}>
+          <Card sx={{ display: "flex", margin: "32px 0" }}>
             <Grid container spacing={0}>
-              <Grid item xs={12} sm={4} className={classes.image}>
-                <CardMedia className={classes.cover}>
+              <Grid item xs={12} sm={4} sx={{ padding: 0 }}>
+                <CardMedia sx={{ maxWidth: '288px' }}>
                   <Image
                     src={ocmc}
                     alt="ocmc"
@@ -137,14 +100,14 @@ export default function Contact(props) {
                 </CardMedia>
               </Grid>
               <Grid item xs={12} sm={8}>
-                <div className={classes.details}>
-                  <CardContent className={classes.content}>
+                <div style={{ display: "flex", flexDirection: "column" }}>
+                  <CardContent sx={{ flex: '1 0 auto' }}>
                     <Typography gutterBottom component="h5" variant="h5">
                       Orange Coast Medical Center
                     </Typography>
-                    <div className={classes.callButton}>
+                    <div style={{ margin: "16px 0" }}>
                       <Button variant="outlined" color="secondary" href="tel:+1-714-593-2719">
-                        <TextsmsIcon className={classes.icon}/>
+                        <TextsmsIcon sx={{ marginRight: '4px' }}/>
                         Call to Schedule: +1 (714) 593-2719
                       </Button>
                     </div>
@@ -153,10 +116,10 @@ export default function Contact(props) {
               </Grid>
             </Grid>
           </Card>
-          <Card className={classes.card}>
+          <Card sx={{ display: "flex", margin: "32px 0" }}>
             <Grid container spacing={0}>
-              <Grid item xs={12} sm={4} className={classes.image}>
-                <CardMedia className={classes.cover}>
+              <Grid item xs={12} sm={4} sx={{ padding: 0 }}>
+                <CardMedia sx={{ maxWidth: '288px' }}>
                   <Image
                     src={smc}
                     alt="smc"
@@ -164,14 +127,14 @@ export default function Contact(props) {
                 </CardMedia>
               </Grid>
               <Grid item xs={12} sm={8}>
-                <div className={classes.details}>
-                  <CardContent className={classes.content}>
+                <div style={{ display: "flex", flexDirection: "column" }}>
+                  <CardContent sx={{ flex: '1 0 auto' }}>
                     <Typography gutterBottom component="h5" variant="h5">
                       Saddleback Medical Center
                     </Typography>
-                    <div className={classes.callButton}>
+                    <div style={{ margin: "16px 0" }}>
                       <Button variant="outlined" color="secondary" href="tel:+1-949-452-3648">
-                        <TextsmsIcon className={classes.icon}/>
+                        <TextsmsIcon sx={{ marginRight: '4px' }}/>
                         Call to Schedule: +1 (949) 452-3648
                       </Button>
                     </div>

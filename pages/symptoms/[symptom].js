@@ -1,4 +1,4 @@
-import React, { Fragment, useState, useRef, useEffect } from 'react'
+import React, { Fragment } from 'react'
 import {
   Typography,
   Container,
@@ -11,10 +11,10 @@ import {
   Divider,
   Box,
 } from '@mui/material'
-import { makeStyles } from '@mui/styles'
 import Nav from '../../src/components/Nav'
 import prisma from '../../lib/prisma.ts'
 import Link from '../../src/components/Link'
+import { Offset } from '../../src/components/Offset'
 
 export const getStaticProps = async (context) => {
   const symptom = await prisma.symptom.findFirst({
@@ -39,82 +39,23 @@ export async function getStaticPaths() {
   return { paths, fallback: false }
 }
 
-const useStyles = makeStyles((theme) => ({
-  root: {
-    flexGrow: 1,
-    display: 'flex'
-  },
-  toolbar: theme.mixins.toolbar,
-  divider: {
-    marginBottom: 32
-  },
-  member: {
-    cursor: "pointer"
-  },
-  paper: {
-    marginRight: theme.spacing(2),
-  },
-  flexColumn: {
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-    flexWrap: 'wrap'
-  },
-  infoIcon: {
-    marginRight: 8
-  },
-  bottomRow: {
-    display: 'flex',
-    justifyContent: 'flex-end',
-    flexWrap: 'wrap',
-    margin: "32px 0",
-  },
-  buttonGroup: {
-    alignContent: 'center',
-    display: 'flex',
-    justifyContent: 'center',
-    marginBottom: 16
-  },
-  searchButton: {
-    display: 'flex',
-    justifyContent: 'center',
-    marginTop: 32
-  },
-  testButtonMargin: {
-    marginBottom: 8
-  },
-  buttonContainer: {
-    border: "none !important"
-  },
-  helpfulTests: {
-    margin: "32px 0",
-    padding: 16
-  },
-  forOther: {
-    padding: 8,
-    color: "red"
-  }
-}))
-
 const titleCase = (str) => {
   return str.replace(/\w\S*/g, (t) => { return t.charAt(0).toUpperCase() + t.substr(1).toLowerCase() })
 }
 
 export default function Test(props) {
-  const classes = useStyles()
-
   const symptom = props.symptom
 
   return (
     <Fragment>
       <Nav />
+      <Offset />
       <Container maxWidth="md">
-        <div className={classes.toolbar} />
         <Box mt={4}>
           <Typography align="center" variant="h4" component="h1" gutterBottom>
             {titleCase(symptom.name)}
           </Typography>
-          <Divider className={classes.divider}/>
+          <Divider sx={{ marginBottom: '32px' }}/>
           <Paper>
             <Table>
               <TableRow>
@@ -136,14 +77,22 @@ export default function Test(props) {
               </TableRow>
             </Table>
           </Paper>
-          <Paper className={classes.helpfulTests}>
+          <Paper sx={{
+            margin: "32px 0",
+            padding: '16px',
+          }}>
             <Typography align="center" variant="h6" gutterBottom>
               Tests that may be helpful, in order of ACR appropriateness criteria:
             </Typography>
-            <div className={classes.buttonGroup}>
+            <div style={{
+              alignContent: 'center',
+              display: 'flex',
+              justifyContent: 'center',
+              marginBottom: '16px',
+            }}>
               <ButtonGroup orientation="vertical" variant="contained" color="primary">
                 {symptom.tests.map((test, index) => (
-                  <Typography key={test.name} align='center' className={classes.buttonContainer}>
+                  <Typography key={test.name} align='center' sx={{ border: "none !important" }}>
                     <Button
                       variant="contained"
                       component={Link}
@@ -153,7 +102,7 @@ export default function Test(props) {
                       size="large"
                       disabled={!test.cpt_code}
                       href={`/tests/${test.id}`}
-                      className={symptom.tests.length !== index + 1 && classes.testButtonMargin}
+                      sx={symptom.tests.length !== index + 1 ? { mb: '8px' } : {}}
                     >
                       {test.name}
                     </Button>

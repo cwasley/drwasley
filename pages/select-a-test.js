@@ -1,7 +1,6 @@
 import React, { Fragment } from 'react'
 import {
   Typography,
-  useTheme,
   Container,
   Grid,
   Divider,
@@ -10,12 +9,12 @@ import {
   Box,
 } from '@mui/material'
 import { Info as InfoIcon } from '@mui/icons-material'
-import { makeStyles } from '@mui/styles'
 import Nav from '../src/components/Nav'
 import Image from 'next/image'
 import skeleton from '../public/skele.png'
 import prisma from '../lib/prisma.ts'
 import Link from '../src/components/Link'
+import { Offset } from '../src/components/Offset'
 
 export const getStaticProps = async () => {
   let members = await prisma.member.findMany()
@@ -24,64 +23,44 @@ export const getStaticProps = async () => {
   return { props: { members } }
 }
 
-const useStyles = makeStyles((theme) => ({
-  root: {
-    flexGrow: 1,
-  },
-  toolbar: theme.mixins.toolbar,
-  divider: {
-    marginBottom: 32,
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center'
-  },
-  regions: {
-    float: "right"
-  },
-  infoIcon: {
-    marginRight: 8
-  },
-  regionButton: {
-    borderBottom: "none !important"
-  }
-}))
-
 const GridWithXXS = ({ xxs, ...other }) => {
   const xxsClass = `MuiGrid-grid-xxs-${xxs}`
   return <Grid className={xxsClass} {...other} />
 }
 
 export default function SelectATest(props) {
-  const classes = useStyles()
-  const theme = useTheme()
-
   const members = props.members
 
   return (
     <Fragment>
       <Nav />
+      <Offset />
       <Container maxWidth="md">
-        <div className={classes.toolbar} />
         <Box mt={4}>
           <Typography align="center" variant="h4" component="h1" gutterBottom>
             Select a Region
           </Typography>
           <Divider />
-          <Typography align='center' variant='subtitle1' className={classes.divider}>
-            <InfoIcon fontSize='small' className={classes.infoIcon} />
+          <Typography align='center' variant='subtitle1' sx={{
+            marginBottom: '32px',
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+          }}>
+            <InfoIcon fontSize='small' sx={{ mr: '8px' }} />
             Please select a region you wish to search for a test in.
           </Typography>
           <Grid container spacing={3}>
             <GridWithXXS item xxs={12} xs={6}>
-              <ButtonGroup orientation="vertical" variant="text" color="secondary" className={classes.regions}>
-                {members.map((member, index) => (
+              <ButtonGroup orientation="vertical" variant="text" color="secondary" sx={{ float: "right" }}>
+                {members.map((member) => (
                   <Button
                     key={member.name}
                     variant="text"
                     component={Link}
                     size="large"
                     href={`/regions/${member.name}`}
-                    className={classes.regionButton}
+                    sx={{ borderBottom: "none !important" }}
                   >
                     {member.name.charAt(0).toUpperCase() + member.name.slice(1)}
                   </Button>

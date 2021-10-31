@@ -15,58 +15,39 @@ import {
 import {
   ExpandMore as ExpandMoreIcon,
 } from '@mui/icons-material'
-import { makeStyles } from '@mui/styles'
+import { styled } from '@mui/material/styles'
 import Nav from '../src/components/Nav'
+import { Offset } from '../src/components/Offset'
 
-const useStyles = makeStyles((theme) => ({
-  root: {
-    flexGrow: 1,
-  },
-  toolbar: theme.mixins.toolbar,
-  heading: {
-    fontSize: theme.typography.pxToRem(24),
-    fontWeight: theme.typography.fontWeightBold,
-  },
-  heading2: {
-    fontSize: theme.typography.pxToRem(24),
-    fontWeight: theme.typography.fontWeightBold,
-    color: theme.palette.secondary.main
-  },
-  details: {
-    display: 'flex',
-    flexDirection: 'column',
-  },
-  content: {
-    flex: '1 0 auto',
-  },
-  paper: {
-    margin: "32px 0"
-  }
+const TypographyHeading = styled(Typography)(({ theme }) => ({
+  fontSize: theme.typography.pxToRem(24),
+  fontWeight: theme.typography.fontWeightBold,
 }))
 
 export default function Contrast() {
-  const classes = useStyles()
-
   return (
     <Fragment>
       <Nav />
+      <Offset />
       <Container maxWidth="md">
-        <div className={classes.toolbar} />
         <Box mt={4}>
           <Typography align="center" variant="h4" component="h1" gutterBottom>
             Is Oral Contrast Required?
           </Typography>
-          <Paper className={classes.paper}>
+          <Paper sx={{ m: "32px 0" }}>
             <Accordion defaultExpanded>
               <AccordionSummary
                 expandIcon={<ExpandMoreIcon />}
                 aria-controls="panel1a-content"
                 id="panel1a-header"
               >
-                <Typography className={classes.heading}>Background and Rationale</Typography>
+                <TypographyHeading>Background and Rationale</TypographyHeading>
               </AccordionSummary>
-              <AccordionDetails className={classes.details}>
-                <div className={classes.content}>
+              <AccordionDetails sx={{
+                display: 'flex',
+                flexDirection: 'column'
+              }}>
+                <div style={{ flex: '1 0 auto' }}>
                   <Typography paragraph>
                     Oral contrast can be helpful in abdominal and pelvic CT. Its increased density defines bowel loops,
                     can identify intrinsic bowel masses or site of leaks.  Because of the lack of mesenteric fat, it can
@@ -90,14 +71,18 @@ export default function Contrast() {
               </AccordionDetails>
             </Accordion>
           </Paper>
-          <Paper className={classes.paper}>
+          <Paper sx={{ m: "32px 0" }}>
             <Accordion defaultExpanded>
               <AccordionSummary
                 expandIcon={<ExpandMoreIcon />}
                 aria-controls="panel2a-content"
                 id="panel2a-header"
               >
-                <Typography className={classes.heading2}>Default Protocols (unless specifically ordered differently)</Typography>
+                <TypographyHeading sx={{
+                  color: 'secondary.main',
+                }}>
+                  Default Protocols (unless specifically ordered differently)
+                </TypographyHeading>
               </AccordionSummary>
               <AccordionDetails>
                 <Grid container spacing={3}>

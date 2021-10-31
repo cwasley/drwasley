@@ -14,10 +14,10 @@ import {
   Box,
 } from '@mui/material'
 import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown'
-import { makeStyles } from '@mui/styles'
 import Nav from '../../src/components/Nav'
 import prisma from '../../lib/prisma.ts'
 import Link from '../../src/components/Link'
+import { Offset } from '../../src/components/Offset'
 
 export const getStaticProps = async (context) => {
   const member = await prisma.member.findFirst({
@@ -51,54 +51,7 @@ export async function getStaticPaths() {
   return { paths, fallback: false }
 }
 
-const useStyles = makeStyles((theme) => ({
-  root: {
-    flexGrow: 1,
-    display: 'flex'
-  },
-  toolbar: theme.mixins.toolbar,
-  divider: {
-    marginBottom: 32,
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center'
-  },
-  member: {
-    cursor: "pointer"
-  },
-  paper: {
-    marginRight: theme.spacing(2),
-  },
-  flexColumn: {
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-    flexWrap: 'wrap',
-  },
-  infoIcon: {
-    marginRight: 8
-  },
-  buttonGroup: {
-    alignContent: 'center',
-    display: 'flex',
-    justifyContent: 'center',
-    marginBottom: 32
-  },
-  searchButton: {
-    display: 'flex',
-    justifyContent: 'center',
-    marginTop: 32
-  },
-  testButton: {
-    marginBottom: 8
-  },
-  buttonContainer: {
-    border: "none !important"
-  },
-}))
-
 export default function SymptomRegion(props) {
-  const classes = useStyles()
   const [open, setOpen] = useState(false)
   const anchorRef = useRef(null)
 
@@ -134,10 +87,15 @@ export default function SymptomRegion(props) {
   return (
     <Fragment>
       <Nav />
+      <Offset />
       <Container maxWidth="md">
-        <div className={classes.toolbar} />
         <Box mt={4}>
-          <div className={classes.flexColumn}>
+          <div style={{
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            flexWrap: 'wrap',
+          }}>
             <Typography variant="h4" component="h1" align="center">
               Search symptoms by region:
             </Typography>
@@ -178,14 +136,24 @@ export default function SymptomRegion(props) {
             </Popper>
           </div>
           <Divider />
-          <Typography align='center' variant='subtitle1' className={classes.divider}>
+          <Typography align='center' variant='subtitle1' sx={{
+            marginBottom: '32px',
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+          }}>
             Choose a symptom from the list below. If needed, click on {props.member.name.toUpperCase()} to change body
             region or click &quot;Search by Test&quot; to search all tests for this region.
           </Typography>
-          <div className={classes.buttonGroup}>
+          <div style={{
+            alignContent: 'center',
+            display: 'flex',
+            justifyContent: 'center',
+            marginBottom: '32px',
+          }}>
             <ButtonGroup orientation="vertical" variant="contained" color="primary">
               {symptoms.map((symptom, index) => (
-                <Typography key={symptom.name} align='center' className={classes.buttonContainer}>
+                <Typography key={symptom.name} align='center' sx={{ border: "none !important" }}>
                   <Button
                     variant="contained"
                     component={Link}
@@ -194,7 +162,7 @@ export default function SymptomRegion(props) {
                     color="secondary"
                     size="large"
                     href={`/symptoms/${symptom.id}`}
-                    className={symptoms.length !== index + 1 && classes.testButton}
+                    sx={symptoms.length !== index + 1 ? { mb: '8px' } : {}}
                   >
                     {symptom.name}
                   </Button>
@@ -202,7 +170,11 @@ export default function SymptomRegion(props) {
               ))}
             </ButtonGroup>
           </div>
-          <div className={classes.searchButton}>
+          <div style={{
+            display: 'flex',
+            justifyContent: 'center',
+            marginTop: '32px',
+          }}>
             <Button
               component={Link}
               variant="outlined"

@@ -7,10 +7,10 @@ import {
   ButtonGroup,
   Box,
 } from '@mui/material'
-import { makeStyles } from '@mui/styles'
 import Nav from '../src/components/Nav'
 import prisma from '../lib/prisma.ts'
 import Link from '../src/components/Link'
+import { Offset } from '../src/components/Offset'
 
 export const getStaticProps = async (context) => {
   const tests = await prisma.test.findMany({
@@ -21,77 +21,54 @@ export const getStaticProps = async (context) => {
   return { props: { tests } }
 }
 
-// export async function getStaticPaths() {
-//   const members = await prisma.member.findMany()
-//
-//   const paths = members.map((member) => ({
-//     params: { region: member.name },
-//   }))
-//
-//   return { paths, fallback: false }
-// }
-
-const useStyles = makeStyles((theme) => ({
-  root: {
-    flexGrow: 1,
-    display: 'flex'
-  },
-  toolbar: theme.mixins.toolbar,
-  divider: {
-    marginBottom: 32,
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center'
-  },
-  flexColumn: {
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-    flexWrap: 'wrap',
-  },
-  buttonGroup: {
-    alignContent: 'center',
-    display: 'flex',
-    justifyContent: 'center',
-    marginBottom: 32
-  },
-  buttonContainer: {
-    border: "none !important"
-  },
-  testButton: {
-    marginBottom: 8
-  }
-}))
-
 export default function TestIndex(props) {
-  const classes = useStyles()
   const tests = props.tests
 
   return (
     <Fragment>
       <Nav />
+      <Offset />
       <Container maxWidth="md">
-        <div className={classes.toolbar} />
         <Box mt={4}>
-          <div className={classes.flexColumn}>
+          <div style={{
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            flexWrap: 'wrap',
+          }}>
             <Typography variant="h4" component="h1" gutterBottom align="center">
               Available Test Index
             </Typography>
           </div>
-          <Divider className={classes.divider}/>
-          <div className={classes.buttonGroup}>
-            <ButtonGroup orientation="vertical" variant="contained" color="primary">
+          <Divider
+            sx={{
+              marginBottom: '32px',
+              display: 'flex',
+              justifyContent: 'center',
+              alignItems: 'center',
+            }}
+          />
+          <div style={{
+            alignContent: 'center',
+            display: 'flex',
+            justifyContent: 'center',
+            marginBottom: '32px',
+          }}>
+            <ButtonGroup
+              orientation="vertical"
+              variant="contained"
+              color="primary"
+            >
               {tests.map((test, index) => (
-                <Typography key={test.name} align='center' className={classes.buttonContainer}>
+                <Typography key={test.name} align='center' sx={{ border: "none !important" }}>
                   <Button
                     variant="contained"
                     component={Link}
-                    naked
                     fullWidth
                     color="secondary"
                     size="large"
                     href={`/tests/${test.id}`}
-                    className={tests.length !== index + 1 && classes.testButton}
+                    sx={tests.length !== index + 1 ? { mb: '8px' } : {}}
                   >
                     {test.name}
                   </Button>
