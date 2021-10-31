@@ -5,14 +5,12 @@ import {
   Button,
   MenuItem,
   Grid,
-  withStyles,
   ListItemIcon,
   ListItemText,
   Divider,
-  makeStyles,
   Container,
   Box
-} from '@material-ui/core'
+} from '@mui/material'
 import {
   Call,
   Group,
@@ -20,7 +18,8 @@ import {
   Help,
   Search,
   List
-} from '@material-ui/icons'
+} from '@mui/icons-material'
+import { makeStyles, withStyles } from '@mui/styles'
 import Image from 'next/image'
 import Link from '../src/components/Link'
 import Nav from '../src/components/Nav'

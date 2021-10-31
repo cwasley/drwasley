@@ -1,7 +1,6 @@
 import React, { Fragment } from 'react'
 import {
   Typography,
-  makeStyles,
   Container,
   Card,
   CardContent,
@@ -12,12 +11,17 @@ import {
   TableRow,
   TableCell,
   Paper,
-  Box, Toolbar, Divider, ListItem, ListItemIcon, ListItemText, AccordionSummary, AccordionDetails, Accordion,
-} from '@material-ui/core'
+  Box,
+  Divider,
+  AccordionSummary,
+  AccordionDetails,
+  Accordion,
+} from '@mui/material'
 import {
-  EmojiObjects as EmojiObjectsIcon, ExpandLess as ExpandLessIcon, ExpandMore as ExpandMoreIcon,
-  Textsms as TextsmsIcon
-} from '@material-ui/icons'
+  ExpandMore as ExpandMoreIcon,
+  Textsms as TextsmsIcon,
+} from '@mui/icons-material'
+import { makeStyles } from '@mui/styles'
 import Image from 'next/image'
 import Nav from '../../src/components/Nav'
 import ocmc from '/public/hospitals/ocmc.jpg'

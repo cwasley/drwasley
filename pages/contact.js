@@ -1,7 +1,6 @@
 import React, { Fragment } from 'react'
 import {
   Typography,
-  makeStyles,
   Container,
   Card,
   CardContent,
@@ -9,14 +8,15 @@ import {
   Button,
   Grid,
   Box,
-} from '@material-ui/core'
+} from '@mui/material'
 import {
   Call as CallIcon,
   Textsms as TextsmsIcon
-} from '@material-ui/icons'
+} from '@mui/icons-material'
+import { makeStyles } from '@mui/styles'
 import Image from 'next/image'
 import Nav from '../src/components/Nav'
-import dick from '/public/radiologists/dick.jpeg'
+import richard from '/public/radiologists/dick.jpeg'
 import ocmc from '/public/hospitals/ocmc.jpg'
 import smc from '/public/hospitals/smc.jpg'
 
@@ -48,7 +48,8 @@ const useStyles = makeStyles((theme) => ({
   image: {
     padding: 0,
     display: 'flex',
-    justifyContent: 'center'
+    justifyContent: 'center',
+    minHeight: 162
   },
   detailsGrid: {
     [theme.breakpoints.down('xs')]: {
@@ -77,7 +78,7 @@ export default function Contact() {
                 <Grid item xs={12} sm={4} className={classes.image}>
                   <CardMedia className={classes.cover}>
                     <Image
-                      src={dick}
+                      src={richard}
                       alt="dr wasley"
                     />
                   </CardMedia>
@@ -86,7 +87,7 @@ export default function Contact() {
                   <div className={classes.details}>
                     <CardContent className={classes.content}>
                       <Typography gutterBottom component="h5" variant="h5">
-                        Dick Wasley, MD
+                        Richard Wasley, MD
                       </Typography>
                       <div className={classes.callButton}>
                         <Button variant="outlined" color="secondary" href="tel:+1-949-683-5396">

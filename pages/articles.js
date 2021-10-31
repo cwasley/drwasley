@@ -2,7 +2,6 @@ import React, { useState, Fragment } from 'react'
 import {
   Typography,
   Grid,
-  makeStyles,
   Container,
   List,
   ListItem,
@@ -13,12 +12,13 @@ import {
   Divider,
   Paper,
   Box
-} from '@material-ui/core'
+} from '@mui/material'
 import {
   ExpandMore as ExpandMoreIcon,
   ExpandLess as ExpandLessIcon,
   Description as DescriptionIcon
-} from '@material-ui/icons'
+} from '@mui/icons-material'
+import { makeStyles } from '@mui/styles'
 import Nav from '../src/components/Nav'
 import Link from '../src/components/Link'
 

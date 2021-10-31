@@ -1,17 +1,16 @@
 import React, { Fragment } from 'react'
 import {
   Typography,
-  makeStyles,
   useTheme,
   Container,
   Grid,
   Divider,
-  createTheme,
   Button,
   ButtonGroup,
   Box,
-} from '@material-ui/core'
-import { Info as InfoIcon } from '@material-ui/icons'
+} from '@mui/material'
+import { Info as InfoIcon } from '@mui/icons-material'
+import { makeStyles } from '@mui/styles'
 import Nav from '../src/components/Nav'
 import Image from 'next/image'
 import skeleton from '../public/skele.png'

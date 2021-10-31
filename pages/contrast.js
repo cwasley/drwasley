@@ -1,7 +1,6 @@
 import React, { Fragment } from 'react'
 import {
   Typography,
-  makeStyles,
   Container,
   Paper,
   Accordion,
@@ -12,10 +11,11 @@ import {
   ListItem,
   ListItemText,
   Box,
-} from '@material-ui/core'
+} from '@mui/material'
 import {
   ExpandMore as ExpandMoreIcon,
-} from '@material-ui/icons'
+} from '@mui/icons-material'
+import { makeStyles } from '@mui/styles'
 import Nav from '../src/components/Nav'
 
 const useStyles = makeStyles((theme) => ({

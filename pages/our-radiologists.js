@@ -2,7 +2,6 @@ import React, { useState, Fragment } from 'react'
 import {
   Typography,
   Grid,
-  makeStyles,
   Container,
   List,
   ListItem,
@@ -12,18 +11,18 @@ import {
   ClickAwayListener,
   Card,
   CardContent,
-  CardActionArea,
   CardMedia,
   Paper,
-  Box
-} from '@material-ui/core'
+  Box,
+} from '@mui/material'
 import {
   ExpandMore as ExpandMoreIcon,
   ExpandLess as ExpandLessIcon,
   EmojiObjects as EmojiObjectsIcon,
   Work as WorkIcon,
   ThumbUp as ThumbUpIcon
-} from '@material-ui/icons'
+} from '@mui/icons-material'
+import { makeStyles } from '@mui/styles'
 import Image from 'next/image'
 import { radiologistData } from '../src/components/OurRadiologists/constants'
 import Nav from '../src/components/Nav'
@@ -49,15 +48,17 @@ const useStyles = makeStyles((theme) => ({
     paddingLeft: theme.spacing(4),
   },
   card: {
-    maxWidth: 288,
     margin: "16px auto 16px auto",
     color: "white",
-    backgroundColor: "#454545"
+    backgroundColor: "#454545",
+    display: "flex"
+  },
+  cardContent: {
+    display: "flex",
+    flexDirection: "column",
   },
   media: {
-    height: 288,
-    paddingTop: '56.25%',
-    marginTop: '30'
+    maxHeight: 111,
   },
 }))
 
@@ -234,20 +235,31 @@ export default function OurRadiologists() {
           </Paper>
           <Grid container spacing={3}>
             {radiologistData.map((item, index) => (
-              <Grid item key={`image-${index}`} xs={12} sm={6} md={4}>
+              <Grid item key={`image-${index}`} xs={12} sm={6}>
                 <Card className={classes.card}>
-                  <CardActionArea>
-                    <CardMedia>
-                      <Image
-                        src={item.img}
-                        alt={item.title}
-                        className={classes.media}
-                      />
-                    </CardMedia>
-                    <CardContent>
-                      <Typography gutterBottom variant="h6" component="h2">{item.title}</Typography>
-                    </CardContent>
-                  </CardActionArea>
+                  <CardMedia className={classes.media}>
+                    <Image
+                      src={item.img}
+                      alt={item.title}
+                      layout="fixed"
+                    />
+                  </CardMedia>
+                  <CardContent className={classes.cardContent}>
+                    <Typography variant="h6" component="div">{item.title}</Typography>
+                    <List>
+                      {item.certifications.map((certification, index) => (
+                        <ListItem key={`certification-${index}`} disableGutters dense disablePadding>
+                          <ListItemText>
+                            <Typography variant="body2" component="div">{certification}</Typography>
+                          </ListItemText>
+                        </ListItem>
+                      ))}
+                    </List>
+                    <br />
+                    {item.education.map((line, index) => (
+                      <Typography key={`education-${index}`} variant="body2" component="div">{line}</Typography>
+                    ))}
+                  </CardContent>
                 </Card>
               </Grid>
             ))}

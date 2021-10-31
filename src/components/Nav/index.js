@@ -2,7 +2,6 @@ import React, { useState } from 'react'
 import {
   AppBar,
   IconButton,
-  makeStyles,
   Toolbar,
   Typography,
   List,
@@ -11,7 +10,7 @@ import {
   ListItemText,
   Divider,
   Drawer
-} from '@material-ui/core'
+} from '@mui/material'
 import {
   Menu as MenuIcon,
   Home as HomeIcon,
@@ -21,7 +20,8 @@ import {
   Help as HelpIcon,
   Search as SearchIcon,
   List as ListIcon
-} from '@material-ui/icons'
+} from '@mui/icons-material'
+import { makeStyles } from '@mui/styles'
 
 import Link from '../Link'
 
