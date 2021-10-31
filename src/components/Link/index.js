@@ -1,13 +1,16 @@
-/* eslint-disable jsx-a11y/anchor-has-content */
 import * as React from 'react'
+import PropTypes from 'prop-types'
 import clsx from 'clsx'
 import { useRouter } from 'next/router'
 import NextLink from 'next/link'
 import MuiLink from '@mui/material/Link'
+import { styled } from '@mui/material/styles'
+
+// Add support for the sx prop for consistency with the other branches.
+const Anchor = styled('a')({})
 
 export const NextLinkComposed = React.forwardRef(function NextLinkComposed(props, ref) {
-  const { to, linkAs, href, replace, scroll, passHref, shallow, prefetch, locale, ...other } =
-    props
+  const { to, linkAs, href, replace, scroll, shallow, prefetch, locale, ...other } = props
 
   return (
     <NextLink
@@ -17,13 +20,25 @@ export const NextLinkComposed = React.forwardRef(function NextLinkComposed(props
       replace={replace}
       scroll={scroll}
       shallow={shallow}
-      passHref={passHref}
+      passHref
       locale={locale}
     >
-      <a ref={ref} {...other} />
+      <Anchor ref={ref} {...other} />
     </NextLink>
   )
 })
+
+NextLinkComposed.propTypes = {
+  href: PropTypes.any,
+  linkAs: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),
+  locale: PropTypes.string,
+  passHref: PropTypes.bool,
+  prefetch: PropTypes.bool,
+  replace: PropTypes.bool,
+  scroll: PropTypes.bool,
+  shallow: PropTypes.bool,
+  to: PropTypes.oneOfType([PropTypes.object, PropTypes.string]).isRequired,
+}
 
 // A styled version of the Next.js Link component:
 // https://nextjs.org/docs/#with-link
@@ -49,7 +64,7 @@ const Link = React.forwardRef(function Link(props, ref) {
 
   if (isExternal) {
     if (noLinkStyle) {
-      return <a className={className} href={href} ref={ref} {...other} />
+      return <Anchor className={className} href={href} ref={ref} {...other} />
     }
 
     return <MuiLink className={className} href={href} ref={ref} {...other} />
@@ -70,5 +85,14 @@ const Link = React.forwardRef(function Link(props, ref) {
     />
   )
 })
+
+Link.propTypes = {
+  activeClassName: PropTypes.string,
+  as: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),
+  className: PropTypes.string,
+  href: PropTypes.any,
+  noLinkStyle: PropTypes.bool,
+  role: PropTypes.string,
+}
 
 export default Link

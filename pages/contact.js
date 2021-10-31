@@ -13,151 +13,147 @@ import {
   Call as CallIcon,
   Textsms as TextsmsIcon
 } from '@mui/icons-material'
-import { makeStyles } from '@mui/styles'
+import { styled } from '@mui/material/styles'
 import Image from 'next/image'
 import Nav from '../src/components/Nav'
+import { Offset } from '../src/components/Offset'
 import richard from '/public/radiologists/dick.jpeg'
 import ocmc from '/public/hospitals/ocmc.jpg'
 import smc from '/public/hospitals/smc.jpg'
 
-const useStyles = makeStyles((theme) => ({
-  root: {
-    flexGrow: 1,
-  },
-  toolbar: theme.mixins.toolbar,
-  card: {
-    display: "flex",
-    margin: "32px 0",
-  },
-  details: {
-    display: "flex",
-    flexDirection: "column"
-  },
-  content: {
-    flex: '1 0 auto'
-  },
-  callButton: {
-    margin: "16px 0"
-  },
-  icon: {
-    marginRight: '4px'
-  },
-  cover: {
-    maxWidth: 288
-  },
-  image: {
-    padding: 0,
-    display: 'flex',
+const DetailsGrid = styled(Grid)(({ theme }) => ({
+  [theme.breakpoints.down('xs')]: {
     justifyContent: 'center',
-    minHeight: 162
+    display: 'flex',
+    textAlign: 'center',
   },
-  detailsGrid: {
-    [theme.breakpoints.down('xs')]: {
-      justifyContent: 'center',
-      display: 'flex',
-      textAlign: 'center'
-    },
-  }
 }))
 
 export default function Contact() {
-  const classes = useStyles()
-
   return (
     <Fragment>
       <Nav />
+      <Offset />
       <Container maxWidth="md">
-        <div className={classes.toolbar} />
         <Box mt={4}>
           <Typography align="center" variant="h4" component="h1" gutterBottom>
             Contact
           </Typography>
           <div>
-            <Card className={classes.card}>
+            <Card sx={{ display: 'flex', margin: '32px 0' }}>
               <Grid container spacing={0}>
-                <Grid item xs={12} sm={4} className={classes.image}>
-                  <CardMedia className={classes.cover}>
+                <Grid item xs={12} sm={4} sx={{
+                  padding: 0,
+                  display: 'flex',
+                  justifyContent: 'center',
+                  minHeight: 162,
+                }}>
+                  <CardMedia sx={{ maxWidth: 288 }}>
                     <Image
                       src={richard}
                       alt="dr wasley"
                     />
                   </CardMedia>
                 </Grid>
-                <Grid item xs={12} sm={8} className={classes.detailsGrid}>
-                  <div className={classes.details}>
-                    <CardContent className={classes.content}>
+                <DetailsGrid item xs={12} sm={8}>
+                  <div style={{ display: "flex", flexDirection: "column" }}>
+                    <CardContent sx={{ flex: '1 0 auto' }}>
                       <Typography gutterBottom component="h5" variant="h5">
                         Richard Wasley, MD
                       </Typography>
-                      <div className={classes.callButton}>
-                        <Button variant="outlined" color="secondary" href="tel:+1-949-683-5396">
-                          <TextsmsIcon className={classes.icon}/>
+                      <div style={{ margin: "16px 0" }}>
+                        <Button
+                          variant="outlined"
+                          color="secondary"
+                          href="tel:+1-949-683-5396"
+                        >
+                          <TextsmsIcon sx={{ mr: 4 }}/>
                           Call: +1 (949) 683-5396
                         </Button>
                       </div>
-                      <div className={classes.callButton}>
-                        <Button variant="outlined" color="secondary" href="sms:+1-949-683-5396">
-                          <CallIcon className={classes.icon}/>
+                      <div style={{ margin: "16px 0" }}>
+                        <Button
+                          variant="outlined"
+                          color="secondary"
+                          href="sms:+1-949-683-5396"
+                        >
+                          <CallIcon sx={{ mr: 4 }}/>
                           Text: +1 (949) 683-5396
                         </Button>
                       </div>
                     </CardContent>
                   </div>
-                </Grid>
+                </DetailsGrid>
               </Grid>
             </Card>
-            <Card className={classes.card}>
+            <Card sx={{ display: 'flex', margin: '32px 0' }}>
               <Grid container spacing={0}>
-                <Grid item xs={12} sm={4} className={classes.image}>
-                  <CardMedia className={classes.cover}>
+                <Grid item xs={12} sm={4} sx={{
+                  padding: 0,
+                  display: 'flex',
+                  justifyContent: 'center',
+                  minHeight: 162,
+                }}>
+                  <CardMedia sx={{ maxWidth: 288 }}>
                     <Image
                       src={ocmc}
                       alt="ocmc"
                     />
                   </CardMedia>
                 </Grid>
-                <Grid item xs={12} sm={8} className={classes.detailsGrid}>
-                  <div className={classes.details}>
-                    <CardContent className={classes.content}>
+                <DetailsGrid item xs={12} sm={8}>
+                  <div style={{ display: "flex", flexDirection: "column" }}>
+                    <CardContent sx={{ flex: '1 0 auto' }}>
                       <Typography gutterBottom component="h5" variant="h5">
                         Orange Coast Medical Center
                       </Typography>
-                      <div className={classes.callButton}>
-                        <Button variant="outlined" color="secondary" href="tel:+1-714-593-2719">
-                          <TextsmsIcon className={classes.icon}/>
-                          Call to Schedule: +1 (714) 593-2719
-                        </Button>
-                      </div>
+                      <Button
+                        variant="outlined"
+                        color="secondary"
+                        href="tel:+1-714-593-2719"
+                        sx={{ m: '8px 0' }}
+                      >
+                        <TextsmsIcon sx={{ mr: 4 }}/>
+                        Call to Schedule: +1 (714) 593-2719
+                      </Button>
                     </CardContent>
                   </div>
-                </Grid>
+                </DetailsGrid>
               </Grid>
             </Card>
-            <Card className={classes.card}>
+            <Card sx={{ display: 'flex', margin: '32px 0' }}>
               <Grid container spacing={0}>
-                <Grid item xs={12} sm={4} className={classes.image}>
-                  <CardMedia className={classes.cover}>
+                <Grid item xs={12} sm={4} sx={{
+                  padding: 0,
+                  display: 'flex',
+                  justifyContent: 'center',
+                  minHeight: 162,
+                }}>
+                  <CardMedia sx={{ maxWidth: 288 }}>
                     <Image
                       src={smc}
                       alt="smc"
                     />
                   </CardMedia>
                 </Grid>
-                <Grid item xs={12} sm={8} className={classes.detailsGrid}>
-                  <div className={classes.details}>
-                    <CardContent className={classes.content}>
+                <DetailsGrid item xs={12} sm={8}>
+                  <div style={{ display: "flex", flexDirection: "column" }}>
+                    <CardContent sx={{ flex: '1 0 auto' }}>
                       <Typography gutterBottom component="h5" variant="h5">
                         Saddleback Medical Center
                       </Typography>
-                      <div className={classes.callButton}>
-                        <Button variant="outlined" color="secondary" href="tel:+1-949-452-3648">
-                          <TextsmsIcon className={classes.icon}/>
-                          Call to Schedule: +1 (949) 452-3648
-                        </Button>
-                      </div>
+                      <Button
+                        variant="outlined"
+                        color="secondary"
+                        href="tel:+1-949-452-3648"
+                        sx={{ margin: '8px 0' }}
+                      >
+                        <TextsmsIcon sx={{ mr: 4 }}/>
+                        Call to Schedule: +1 (949) 452-3648
+                      </Button>
                     </CardContent>
                   </div>
-                </Grid>
+                </DetailsGrid>
               </Grid>
             </Card>
           </div>

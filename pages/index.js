@@ -19,33 +19,22 @@ import {
   Search,
   List
 } from '@mui/icons-material'
-import { makeStyles, withStyles } from '@mui/styles'
+import { styled } from '@mui/material/styles'
 import Image from 'next/image'
 import Link from '../src/components/Link'
 import Nav from '../src/components/Nav'
 import logo from '../public/logo.svg'
 import prisma from '../lib/prisma.ts'
+import { Offset } from '../src/components/Offset'
 
 export const getStaticProps = async () => {
   const members = await prisma.member.findMany()
   return { props: { members } }
 }
 
-const useStyles = makeStyles((theme) => ({
-  root: {
-    flexGrow: 1,
-  },
-  toolbar: theme.mixins.toolbar
-}))
-
-const StyledMenu = withStyles({
-  paper: {
-    border: '1px solid #d3d4d5',
-  },
-})((props) => (
+const StyledMenu = styled((props) => (
   <Menu
     elevation={0}
-    getContentAnchorEl={null}
     anchorOrigin={{
       vertical: 'bottom',
       horizontal: 'center',
@@ -56,11 +45,14 @@ const StyledMenu = withStyles({
     }}
     {...props}
   />
-))
+))(() => ({
+  '& .MuiPaper-root': {
+    border: '1px solid #d3d4d5',
+  },
+}))
 
-export default function Home(props) {
+export default function Home() {
   const [anchorEl, setAnchorEl] = useState(null)
-  const classes = useStyles()
 
   const handleClick = (e) => {
     setAnchorEl(e.currentTarget)
@@ -73,8 +65,8 @@ export default function Home(props) {
   return (
     <Fragment>
       <Nav />
+      <Offset />
       <Container maxWidth="md">
-        <div className={classes.toolbar} />
         <Box
           mt={4}
           mb={7}
@@ -117,39 +109,39 @@ export default function Home(props) {
               open={Boolean(anchorEl)}
               onClose={handleClose}
             >
-              <MenuItem component={Link} naked href='/contact' onClick={handleClose}>
+              <MenuItem component={Link} href='/contact' onClick={handleClose}>
                 <ListItemIcon>
                   <Call fontSize="small" />
                 </ListItemIcon>
                 <ListItemText primary="Contact/Call To Schedule" />
               </MenuItem>
-              <MenuItem component={Link} naked href="/our-radiologists" onClick={handleClose}>
+              <MenuItem component={Link} href="/our-radiologists" onClick={handleClose}>
                 <ListItemIcon>
                   <Group fontSize="small" />
                 </ListItemIcon>
                 <ListItemText primary="Our Radiologists" />
               </MenuItem>
               <Divider />
-              <MenuItem component={Link} naked href='/articles' onClick={handleClose}>
+              <MenuItem component={Link} href='/articles' onClick={handleClose}>
                 <ListItemIcon>
                   <Description fontSize="small" />
                 </ListItemIcon>
                 <ListItemText primary="CME Talks/Articles" />
               </MenuItem>
-              <MenuItem component={Link} naked href='/contrast' onClick={handleClose}>
+              <MenuItem component={Link} href='/contrast' onClick={handleClose}>
                 <ListItemIcon>
                   <Help fontSize="small" />
                 </ListItemIcon>
                 <ListItemText primary="Is Oral Contrast Required?" />
               </MenuItem>
               <Divider />
-              <MenuItem component={Link} naked href='/select-a-test' onClick={handleClose}>
+              <MenuItem component={Link} href='/select-a-test' onClick={handleClose}>
                 <ListItemIcon>
                   <Search fontSize="small" />
                 </ListItemIcon>
                 <ListItemText primary="Search Tests" />
               </MenuItem>
-              <MenuItem component={Link} naked href='/test-index' onClick={handleClose}>
+              <MenuItem component={Link} href='/test-index' onClick={handleClose}>
                 <ListItemIcon>
                   <List fontSize="small" />
                 </ListItemIcon>

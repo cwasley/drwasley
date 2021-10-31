@@ -21,26 +21,10 @@ import {
   Search as SearchIcon,
   List as ListIcon
 } from '@mui/icons-material'
-import { makeStyles } from '@mui/styles'
 
 import Link from '../Link'
 
-const drawerWidth = 240
-
-const useStyles = makeStyles((theme) => ({
-  root: {
-    flexGrow: 1,
-  },
-  menuButton: {
-    marginRight: theme.spacing(2),
-  },
-  drawerPaper: {
-    width: drawerWidth,
-  },
-}))
-
 export default function Nav() {
-  const classes = useStyles()
   const [navOpen, setNavOpen] = useState(false)
 
   const handleDrawerToggle = () => {
@@ -50,7 +34,7 @@ export default function Nav() {
   const drawer = (
     <div>
       <List>
-        <ListItem button naked component={Link} href='/'>
+        <ListItem button component={Link} href='/'>
           <ListItemIcon>
             <HomeIcon />
           </ListItemIcon>
@@ -59,13 +43,13 @@ export default function Nav() {
       </List>
       <Divider />
       <List>
-        <ListItem button naked component={Link} href='/contact'>
+        <ListItem button component={Link} href='/contact'>
           <ListItemIcon>
             <CallIcon />
           </ListItemIcon>
           <ListItemText primary='Contact' />
         </ListItem>
-        <ListItem button naked component={Link} href='/our-radiologists'>
+        <ListItem button component={Link} href='/our-radiologists'>
           <ListItemIcon>
             <GroupIcon />
           </ListItemIcon>
@@ -74,13 +58,13 @@ export default function Nav() {
       </List>
       <Divider />
       <List>
-        <ListItem button naked component={Link} href='/articles'>
+        <ListItem button component={Link} href='/articles'>
           <ListItemIcon>
             <DescriptionIcon />
           </ListItemIcon>
           <ListItemText primary='CME Talks/Articles' />
         </ListItem>
-        <ListItem button naked component={Link} href='/contrast'>
+        <ListItem button component={Link} href='/contrast'>
           <ListItemIcon>
             <HelpIcon />
           </ListItemIcon>
@@ -89,13 +73,13 @@ export default function Nav() {
       </List>
       <Divider />
       <List>
-        <ListItem button naked component={Link} href='/select-a-test'>
+        <ListItem button component={Link} href='/select-a-test'>
           <ListItemIcon>
             <SearchIcon />
           </ListItemIcon>
           <ListItemText primary='Search Tests' />
         </ListItem>
-        <ListItem button naked component={Link} href='/test-index'>
+        <ListItem button component={Link} href='/test-index'>
           <ListItemIcon>
             <ListIcon />
           </ListItemIcon>
@@ -106,12 +90,12 @@ export default function Nav() {
   )
 
   return (
-    <div className={classes.root}>
+    <div>
       <AppBar position="fixed">
         <Toolbar>
           <IconButton
             edge="start"
-            className={classes.menuButton}
+            sx={{ mr: 2 }}
             color="inherit"
             aria-label="open drawer"
             onClick={handleDrawerToggle}
@@ -131,9 +115,6 @@ export default function Nav() {
           anchor='left'
           open={navOpen}
           onClose={handleDrawerToggle}
-          classes={{
-            paper: classes.drawerPaper,
-          }}
           ModalProps={{
             keepMounted: true
           }}
