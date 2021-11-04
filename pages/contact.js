@@ -110,11 +110,11 @@ export default function Contact() {
                       <Button
                         variant="outlined"
                         color="secondary"
-                        href="tel:+1-714-593-2719"
+                        href="tel:+1-714-378-7572"
                         sx={{ m: '8px 0' }}
                       >
                         <TextsmsIcon sx={{ mr: 4 }}/>
-                        Call to Schedule: +1 (714) 593-2719
+                        Call to Schedule: +1 (714) 378-7572
                       </Button>
                     </CardContent>
                   </div>
@@ -149,7 +149,7 @@ export default function Contact() {
                         sx={{ margin: '8px 0' }}
                       >
                         <TextsmsIcon sx={{ mr: 4 }}/>
-                        Call to Schedule: +1 (949) 452-3648
+                        Call to Schedule: +1 (949) 452-3648. Option 2.
                       </Button>
                     </CardContent>
                   </div>
