@@ -122,7 +122,6 @@ export default function SymptomRegion(props) {
                             key={member.name}
                             onClick={handleClose}
                             component={Link}
-                            naked
                             href={`/symptom-regions/${member.name}`}
                           >
                             {member.name}
@@ -157,7 +156,6 @@ export default function SymptomRegion(props) {
                   <Button
                     variant="contained"
                     component={Link}
-                    naked
                     fullWidth
                     color="secondary"
                     size="large"
@@ -179,7 +177,6 @@ export default function SymptomRegion(props) {
               component={Link}
               variant="outlined"
               color="primary"
-              naked
               size="large"
               href={`/regions/${props.member.name}`}
             >

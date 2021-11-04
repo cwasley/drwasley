@@ -10,6 +10,7 @@ import {
   Table,
   TableRow,
   TableCell,
+  TableBody,
   Paper,
   Box,
   Divider,
@@ -73,18 +74,20 @@ export default function Contact(props) {
               </AccordionSummary>
               <AccordionDetails>
                 <Table>
-                  <TableRow>
-                    <TableCell variant="head">Test Name</TableCell>
-                    <TableCell>{test.name}</TableCell>
-                  </TableRow>
-                  <TableRow>
-                    <TableCell variant="head">CPT Code</TableCell>
-                    <TableCell>{test.cpt_code}</TableCell>
-                  </TableRow>
-                  <TableRow>
-                    <TableCell variant="head">Exact format for order to be authorized</TableCell>
-                    <TableCell>{test.format}</TableCell>
-                  </TableRow>
+                  <TableBody>
+                    <TableRow>
+                      <TableCell variant="head">Test Name</TableCell>
+                      <TableCell>{test.name}</TableCell>
+                    </TableRow>
+                    <TableRow>
+                      <TableCell variant="head">CPT Code</TableCell>
+                      <TableCell>{test.cpt_code}</TableCell>
+                    </TableRow>
+                    <TableRow>
+                      <TableCell variant="head">Exact format for order to be authorized</TableCell>
+                      <TableCell>{test.format}</TableCell>
+                    </TableRow>
+                  </TableBody>
                 </Table>
               </AccordionDetails>
             </Accordion>

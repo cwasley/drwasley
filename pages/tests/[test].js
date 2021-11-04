@@ -4,10 +4,12 @@ import {
   Container,
   Table,
   TableRow,
+  TableBody,
   TableCell,
   Paper,
   Button,
-  Box, Divider,
+  Box,
+  Divider,
 } from '@mui/material'
 import Nav from '../../src/components/Nav'
 import prisma from '../../lib/prisma.ts'
@@ -15,6 +17,7 @@ import Link from '../../src/components/Link'
 import hand from '../../public/hand.svg'
 import Image from 'next/image'
 import { Offset } from '../../src/components/Offset'
+import { titleCase } from '../../src/utils'
 
 export const getStaticProps = async (context) => {
   const test = await prisma.test.findFirst({
@@ -38,10 +41,6 @@ export async function getStaticPaths() {
   return { paths, fallback: false }
 }
 
-const titleCase = (str) => {
-  return str.replace(/\w\S*/g, (t) => { return t.charAt(0).toUpperCase() + t.substr(1) })
-}
-
 export default function Test(props) {
   const test = props.test
 
@@ -57,34 +56,36 @@ export default function Test(props) {
           <Divider sx={{ marginBottom: '32px' }}/>
           <Paper>
             <Table>
-              <TableRow>
-                <TableCell variant="head">Body Region</TableCell>
-                <TableCell>{test.member.name}</TableCell>
-              </TableRow>
-              <TableRow>
-                <TableCell variant="head">Strengths</TableCell>
-                <TableCell>{test.strengths}</TableCell>
-              </TableRow>
-              <TableRow>
-                <TableCell variant="head">Limitations</TableCell>
-                <TableCell>{test.limitations}</TableCell>
-              </TableRow>
-              <TableRow>
-                <TableCell variant="head">Contraindications</TableCell>
-                <TableCell>{test.contraindications}</TableCell>
-              </TableRow>
-              <TableRow>
-                <TableCell variant="head">CPT Code</TableCell>
-                <TableCell>{test.cpt_code}</TableCell>
-              </TableRow>
-              <TableRow>
-                <TableCell variant="head">Exact format for order to be authorized</TableCell>
-                <TableCell>{test.format}</TableCell>
-              </TableRow>
-              <TableRow>
-                <TableCell variant="head">Patient Preparation</TableCell>
-                <TableCell>{test.patient_prep}</TableCell>
-              </TableRow>
+              <TableBody>
+                <TableRow>
+                  <TableCell variant="head">Body Region</TableCell>
+                  <TableCell>{test.member.name}</TableCell>
+                </TableRow>
+                <TableRow>
+                  <TableCell variant="head">Strengths</TableCell>
+                  <TableCell>{test.strengths}</TableCell>
+                </TableRow>
+                <TableRow>
+                  <TableCell variant="head">Limitations</TableCell>
+                  <TableCell>{test.limitations}</TableCell>
+                </TableRow>
+                <TableRow>
+                  <TableCell variant="head">Contraindications</TableCell>
+                  <TableCell>{test.contraindications}</TableCell>
+                </TableRow>
+                <TableRow>
+                  <TableCell variant="head">CPT Code</TableCell>
+                  <TableCell>{test.cpt_code}</TableCell>
+                </TableRow>
+                <TableRow>
+                  <TableCell variant="head">Exact format for order to be authorized</TableCell>
+                  <TableCell>{test.format}</TableCell>
+                </TableRow>
+                <TableRow>
+                  <TableCell variant="head">Patient Preparation</TableCell>
+                  <TableCell>{test.patient_prep}</TableCell>
+                </TableRow>
+              </TableBody>
             </Table>
           </Paper>
           <div style={{
@@ -103,7 +104,6 @@ export default function Test(props) {
               component={Link}
               variant="contained"
               color="secondary"
-              naked
               size="large"
               href={`/contact/${test.id}`}
             >

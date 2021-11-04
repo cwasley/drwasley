@@ -31,11 +31,7 @@ createuser -s postgres
 createdb
 ```
 
-4. Copy database url from [Vercel](https://vercel.com/)
-```zsh
-export DATABASE_URL="[URL HERE]"
-```
-(TODO: separate prod from dev urls, mock data for sample dev env)
+4. Copy database url from [Vercel](https://vercel.com/) and add to .env.local
 
 5. Restart terminal
 

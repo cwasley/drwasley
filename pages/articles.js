@@ -11,7 +11,7 @@ import {
   ClickAwayListener,
   Divider,
   Paper,
-  Box
+  Box,
 } from '@mui/material'
 import {
   ExpandMore as ExpandMoreIcon,
@@ -21,7 +21,7 @@ import {
 import { styled } from '@mui/material/styles'
 import Nav from '../src/components/Nav'
 import Link from '../src/components/Link'
-import { scr, cme, coastlines } from '../src/components/Articles/constants'
+import { scr, cme, coastlines } from '../src/constants'
 import { Offset } from '../src/components/Offset'
 
 const NestedListItem = styled((props) => (

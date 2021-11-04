@@ -4,6 +4,7 @@ import {
   Container,
   Table,
   TableRow,
+  TableBody,
   TableCell,
   Paper,
   Button,
@@ -15,6 +16,7 @@ import Nav from '../../src/components/Nav'
 import prisma from '../../lib/prisma.ts'
 import Link from '../../src/components/Link'
 import { Offset } from '../../src/components/Offset'
+import { titleCase } from '../../src/utils'
 
 export const getStaticProps = async (context) => {
   const symptom = await prisma.symptom.findFirst({
@@ -39,10 +41,6 @@ export async function getStaticPaths() {
   return { paths, fallback: false }
 }
 
-const titleCase = (str) => {
-  return str.replace(/\w\S*/g, (t) => { return t.charAt(0).toUpperCase() + t.substr(1).toLowerCase() })
-}
-
 export default function Test(props) {
   const symptom = props.symptom
 
@@ -58,23 +56,25 @@ export default function Test(props) {
           <Divider sx={{ marginBottom: '32px' }}/>
           <Paper>
             <Table>
-              <TableRow>
-                <TableCell variant="head">Symptom</TableCell>
-                <TableCell>{symptom.name}</TableCell>
-              </TableRow>
-              <TableRow>
-                <TableCell variant="head">Considerations</TableCell>
-                <TableCell>
-                  <Typography variant="subheading2" display="block" gutterBottom>
-                    {symptom.considerations[0].body}
-                  </Typography>
-                  {symptom.considerations[1] && (
-                    <Typography display="block" variant="subheading2">
-                      {symptom.considerations[1].body}
+              <TableBody>
+                <TableRow>
+                  <TableCell variant="head">Symptom</TableCell>
+                  <TableCell>{symptom.name}</TableCell>
+                </TableRow>
+                <TableRow>
+                  <TableCell variant="head">Considerations</TableCell>
+                  <TableCell>
+                    <Typography variant="subheading2" display="block" gutterBottom>
+                      {symptom.considerations[0].body}
                     </Typography>
-                  )}
-                </TableCell>
-              </TableRow>
+                    {symptom.considerations[1] && (
+                      <Typography display="block" variant="subheading2">
+                        {symptom.considerations[1].body}
+                      </Typography>
+                    )}
+                  </TableCell>
+                </TableRow>
+              </TableBody>
             </Table>
           </Paper>
           <Paper sx={{
@@ -96,7 +96,6 @@ export default function Test(props) {
                     <Button
                       variant="contained"
                       component={Link}
-                      naked
                       fullWidth
                       color="secondary"
                       size="large"

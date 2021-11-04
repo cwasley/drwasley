@@ -24,7 +24,7 @@ import {
 } from '@mui/icons-material'
 import { styled } from '@mui/material/styles'
 import Image from 'next/image'
-import { expertise, services, values, radiologistData } from '../src/components/OurRadiologists/constants'
+import { expertise, services, values, radiologistData } from '../src/constants'
 import Nav from '../src/components/Nav'
 import { Offset } from '../src/components/Offset'
 
