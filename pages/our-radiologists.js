@@ -1,5 +1,8 @@
 import React, { useState, Fragment } from 'react'
 import {
+  Accordion,
+  AccordionDetails,
+  AccordionSummary,
   Typography,
   Grid,
   Container,
@@ -20,7 +23,9 @@ import {
   ExpandLess as ExpandLessIcon,
   EmojiObjects as EmojiObjectsIcon,
   Work as WorkIcon,
-  ThumbUp as ThumbUpIcon
+  ThumbUp as ThumbUpIcon,
+  Verified as VerifiedIcon,
+  Grading as GradingIcon,
 } from '@mui/icons-material'
 import { styled } from '@mui/material/styles'
 import Image from 'next/image'
@@ -55,7 +60,7 @@ export default function OurRadiologists() {
     <Fragment>
       <Nav />
       <Offset />
-      <Container maxWidth="md">
+      <Container maxWidth="lg">
         <Box mt={4}>
           <Typography align="center" variant="h4" component="h1" gutterBottom>
             South Coast Radiology
@@ -129,11 +134,9 @@ export default function OurRadiologists() {
           </Paper>
           <Grid container spacing={3}>
             {radiologistData.map((item, index) => (
-              <Grid item key={`image-${index}`} xs={12} sm={6}>
+              <Grid item key={`image-${index}`} xs={12}>
                 <Card sx={{
                   margin: "16px auto 16px auto",
-                  color: "white",
-                  backgroundColor: "#454545",
                   display: "flex",
                 }}>
                   <CardMedia sx={{ maxHeight: 111 }}>
@@ -146,21 +149,44 @@ export default function OurRadiologists() {
                   <CardContent sx={{
                     display: "flex",
                     flexDirection: "column",
+                    width: '100%',
                   }}>
-                    <Typography variant="h6" component="div">{item.title}</Typography>
-                    <List>
-                      {item.certifications.map((certification, index) => (
-                        <ListItem key={`certification-${index}`} disableGutters dense disablePadding>
-                          <ListItemText>
-                            <Typography variant="body2" component="div">{certification}</Typography>
-                          </ListItemText>
-                        </ListItem>
-                      ))}
-                    </List>
-                    <br />
-                    {item.education.map((line, index) => (
-                      <Typography key={`education-${index}`} variant="body2" component="div">{line}</Typography>
-                    ))}
+                    <Accordion sx={{ boxShadow: 'none' }} disableGutters>
+                      <AccordionSummary
+                        expandIcon={<ExpandMoreIcon />}
+                      >
+                        <Typography variant="h6" component="div">{item.title}</Typography>
+                      </AccordionSummary>
+                      <AccordionDetails>
+                        <Typography variant="subtitle1" component="div">Certifications</Typography>
+                        <List>
+                          {item.certifications.map((certification, index) => (
+                            <ListItem key={`certification-${index}`} disableGutters dense disablePadding>
+                              <ListItemIcon>
+                                <VerifiedIcon />
+                              </ListItemIcon>
+                              <ListItemText>
+                                <Typography variant="body2" component="div">{certification}</Typography>
+                              </ListItemText>
+                            </ListItem>
+                          ))}
+                        </List>
+                        <br />
+                        <Typography variant="subtitle1" component="div">Qualifications</Typography>
+                        <List>
+                          {item.education.map((line, index) => (
+                            <ListItem key={`education-${index}`} disableGutters dense disablePadding>
+                              <ListItemIcon>
+                                <GradingIcon />
+                              </ListItemIcon>
+                              <ListItemText>
+                                <Typography variant="body2" component="div">{line}</Typography>
+                              </ListItemText>
+                            </ListItem>
+                          ))}
+                        </List>
+                      </AccordionDetails>
+                    </Accordion>
                   </CardContent>
                 </Card>
               </Grid>
