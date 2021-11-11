@@ -4,7 +4,7 @@ import {
   Container,
   Divider,
   Button,
-  ButtonGroup,
+  Stack,
   Box,
 } from '@mui/material'
 import Nav from '../src/components/Nav'
@@ -54,11 +54,7 @@ export default function TestIndex(props) {
             justifyContent: 'center',
             marginBottom: '32px',
           }}>
-            <ButtonGroup
-              orientation="vertical"
-              variant="contained"
-              color="primary"
-            >
+            <Stack>
               {tests.map((test, index) => (
                 <Typography key={test.name} align='center' sx={{ border: "none !important" }}>
                   <Button
@@ -74,7 +70,7 @@ export default function TestIndex(props) {
                   </Button>
                 </Typography>
               ))}
-            </ButtonGroup>
+            </Stack>
           </div>
         </Box>
       </Container>

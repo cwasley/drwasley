@@ -8,7 +8,7 @@ import {
   TableCell,
   Paper,
   Button,
-  ButtonGroup,
+  Stack,
   Divider,
   Box,
 } from '@mui/material'
@@ -90,7 +90,7 @@ export default function Test(props) {
               justifyContent: 'center',
               marginBottom: '16px',
             }}>
-              <ButtonGroup orientation="vertical" variant="contained" color="primary">
+              <Stack>
                 {symptom.tests.map((test, index) => (
                   <Typography key={test.name} align='center' sx={{ border: "none !important" }}>
                     <Button
@@ -107,7 +107,7 @@ export default function Test(props) {
                     </Button>
                   </Typography>
                 ))}
-              </ButtonGroup>
+              </Stack>
             </div>
             <Typography align="center" variant="subtitle2" gutterBottom>
               For other considerations, call or text radiologist.

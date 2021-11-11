@@ -10,7 +10,7 @@ import {
   MenuItem,
   MenuList,
   Popper,
-  ButtonGroup,
+  Stack,
   Box,
 } from '@mui/material'
 import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown'
@@ -150,7 +150,7 @@ export default function SymptomRegion(props) {
             justifyContent: 'center',
             marginBottom: '32px',
           }}>
-            <ButtonGroup orientation="vertical" variant="contained" color="primary">
+            <Stack>
               {symptoms.map((symptom, index) => (
                 <Typography key={symptom.name} align='center' sx={{ border: "none !important" }}>
                   <Button
@@ -166,7 +166,7 @@ export default function SymptomRegion(props) {
                   </Button>
                 </Typography>
               ))}
-            </ButtonGroup>
+            </Stack>
           </div>
           <div style={{
             display: 'flex',
