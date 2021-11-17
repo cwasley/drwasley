@@ -12,6 +12,10 @@ import Link from '../src/components/Link'
 
 export const getStaticProps = async () => {
   const tests = await prisma.test.findMany({
+    // Remove tests that do not have any data
+    where: {
+      NOT: [{ strengths: null }],
+    },
     orderBy: {
       name: 'asc',
     },
