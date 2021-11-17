@@ -11,6 +11,7 @@ import {
   Divider,
   Drawer,
 } from '@mui/material'
+import { styled } from '@mui/material/styles'
 import {
   Menu as MenuIcon,
   Home as HomeIcon,
@@ -30,6 +31,8 @@ export default function Nav() {
   const handleDrawerToggle = () => {
     setNavOpen(!navOpen)
   }
+
+  const Offset = styled('div')(({ theme }) => theme.mixins.toolbar)
 
   const drawer = (
     <div>
@@ -90,38 +93,41 @@ export default function Nav() {
   )
 
   return (
-    <div>
-      <AppBar position='fixed'>
-        <Toolbar>
-          <IconButton
-            edge='start'
-            sx={{ mr: 2 }}
-            color='inherit'
-            aria-label='open drawer'
-            onClick={handleDrawerToggle}
+    <>
+      <div>
+        <AppBar position='fixed'>
+          <Toolbar>
+            <IconButton
+              edge='start'
+              sx={{ mr: 2 }}
+              color='inherit'
+              aria-label='open drawer'
+              onClick={handleDrawerToggle}
+            >
+              <MenuIcon />
+            </IconButton>
+            <Typography variant='h6'>
+              <Link href='/' color='inherit' underline='none'>
+                myRadiologist
+              </Link>
+            </Typography>
+          </Toolbar>
+        </AppBar>
+        <nav aria-label='menu navigation'>
+          <Drawer
+            variant='temporary'
+            anchor='left'
+            open={navOpen}
+            onClose={handleDrawerToggle}
+            ModalProps={{
+              keepMounted: true,
+            }}
           >
-            <MenuIcon />
-          </IconButton>
-          <Typography variant='h6'>
-            <Link href='/' color='inherit' underline='none'>
-              myRadiologist
-            </Link>
-          </Typography>
-        </Toolbar>
-      </AppBar>
-      <nav aria-label='menu navigation'>
-        <Drawer
-          variant='temporary'
-          anchor='left'
-          open={navOpen}
-          onClose={handleDrawerToggle}
-          ModalProps={{
-            keepMounted: true,
-          }}
-        >
-          {drawer}
-        </Drawer>
-      </nav>
-    </div>
+            {drawer}
+          </Drawer>
+        </nav>
+      </div>
+      <Offset />
+    </>
   )
 }

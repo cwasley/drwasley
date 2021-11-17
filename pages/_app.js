@@ -8,6 +8,7 @@ import createEmotionCache from '../styles/createEmotionCache'
 import theme from '../styles/theme'
 import * as ga from '../lib/ga'
 import { CacheProvider } from '@emotion/react'
+import Nav from '../src/components/Nav'
 
 const clientSideEmotionCache = createEmotionCache()
 
@@ -35,6 +36,7 @@ export default function MyApp(props) {
       </Head>
       <ThemeProvider theme={theme}>
         <CssBaseline />
+        <Nav />
         <Component {...pageProps} />
       </ThemeProvider>
     </CacheProvider>
