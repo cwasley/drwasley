@@ -2,7 +2,7 @@ export const scr = [
   {
     link: 'https://collin-wasley.s3.us-west-1.amazonaws.com/articles/scr_1.pdf',
     text: 'Concierge radiology - conceptual design',
-  }
+  },
 ]
 
 export const cme = [

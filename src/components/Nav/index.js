@@ -9,7 +9,7 @@ import {
   ListItemIcon,
   ListItemText,
   Divider,
-  Drawer
+  Drawer,
 } from '@mui/material'
 import {
   Menu as MenuIcon,
@@ -19,7 +19,7 @@ import {
   Description as DescriptionIcon,
   Help as HelpIcon,
   Search as SearchIcon,
-  List as ListIcon
+  List as ListIcon,
 } from '@mui/icons-material'
 
 import Link from '../Link'
@@ -91,32 +91,32 @@ export default function Nav() {
 
   return (
     <div>
-      <AppBar position="fixed">
+      <AppBar position='fixed'>
         <Toolbar>
           <IconButton
-            edge="start"
+            edge='start'
             sx={{ mr: 2 }}
-            color="inherit"
-            aria-label="open drawer"
+            color='inherit'
+            aria-label='open drawer'
             onClick={handleDrawerToggle}
           >
-            <MenuIcon/>
+            <MenuIcon />
           </IconButton>
-          <Typography variant="h6">
-            <Link href="/" color="inherit" underline="none">
+          <Typography variant='h6'>
+            <Link href='/' color='inherit' underline='none'>
               myRadiologist
             </Link>
           </Typography>
         </Toolbar>
       </AppBar>
-      <nav aria-label="menu navigation">
+      <nav aria-label='menu navigation'>
         <Drawer
-          variant="temporary"
+          variant='temporary'
           anchor='left'
           open={navOpen}
           onClose={handleDrawerToggle}
           ModalProps={{
-            keepMounted: true
+            keepMounted: true,
           }}
         >
           {drawer}

@@ -22,21 +22,21 @@ import { Offset } from '../../src/components/Offset'
 export const getStaticProps = async (context) => {
   const member = await prisma.member.findFirst({
     where: {
-      name: context.params.region
+      name: context.params.region,
     },
     include: {
-      symptoms: true
-    }
+      symptoms: true,
+    },
   })
   const members = await prisma.member.findMany({
     where: {
       order: {
-        gt: 0
-      }
+        gt: 0,
+      },
     },
     orderBy: {
-      order: 'asc'
-    }
+      order: 'asc',
+    },
   })
   return { props: { members, member, region: context.params.region } }
 }
@@ -88,27 +88,32 @@ export default function SymptomRegion(props) {
     <Fragment>
       <Nav />
       <Offset />
-      <Container maxWidth="md">
+      <Container maxWidth='md'>
         <Box mt={4}>
-          <div style={{
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            flexWrap: 'wrap',
-          }}>
-            <Typography variant="h4" component="h1" align="center">
+          <div
+            style={{
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              flexWrap: 'wrap',
+            }}
+          >
+            <Typography variant='h4' component='h1' align='center'>
               Search symptoms by region:
             </Typography>
-            <Button
-              ref={anchorRef}
-              onClick={handleToggle}
-            >
-              <Typography variant="h4" component="h1">
+            <Button ref={anchorRef} onClick={handleToggle}>
+              <Typography variant='h4' component='h1'>
                 {props.region.charAt(0).toUpperCase() + props.region.slice(1)}
               </Typography>
               <ArrowDropDownIcon style={{ fontSize: 30 }} />
             </Button>
-            <Popper open={open} anchorEl={anchorRef.current} role={undefined} transition placement='bottom'>
+            <Popper
+              open={open}
+              anchorEl={anchorRef.current}
+              role={undefined}
+              transition
+              placement='bottom'
+            >
               {({ TransitionProps, placement }) => (
                 <Grow
                   {...TransitionProps}
@@ -116,7 +121,11 @@ export default function SymptomRegion(props) {
                 >
                   <Paper>
                     <ClickAwayListener onClickAway={handleClose}>
-                      <MenuList autoFocusItem={open} id="menu-list-grow" onKeyDown={handleListKeyDown}>
+                      <MenuList
+                        autoFocusItem={open}
+                        id='menu-list-grow'
+                        onKeyDown={handleListKeyDown}
+                      >
                         {props.members.map((member) => (
                           <MenuItem
                             key={member.name}
@@ -135,30 +144,41 @@ export default function SymptomRegion(props) {
             </Popper>
           </div>
           <Divider />
-          <Typography align='center' variant='subtitle1' sx={{
-            marginBottom: '32px',
-            display: 'flex',
-            justifyContent: 'center',
-            alignItems: 'center',
-          }}>
-            Choose a symptom from the list below. If needed, click on {props.member.name.toUpperCase()} to change body
-            region or click &quot;Search by Test&quot; to search all tests for this region.
+          <Typography
+            align='center'
+            variant='subtitle1'
+            sx={{
+              marginBottom: '32px',
+              display: 'flex',
+              justifyContent: 'center',
+              alignItems: 'center',
+            }}
+          >
+            Choose a symptom from the list below. If needed, click on{' '}
+            {props.member.name.toUpperCase()} to change body region or click
+            &quot;Search by Test&quot; to search all tests for this region.
           </Typography>
-          <div style={{
-            alignContent: 'center',
-            display: 'flex',
-            justifyContent: 'center',
-            marginBottom: '32px',
-          }}>
+          <div
+            style={{
+              alignContent: 'center',
+              display: 'flex',
+              justifyContent: 'center',
+              marginBottom: '32px',
+            }}
+          >
             <Stack>
               {symptoms.map((symptom, index) => (
-                <Typography key={symptom.name} align='center' sx={{ border: "none !important" }}>
+                <Typography
+                  key={symptom.name}
+                  align='center'
+                  sx={{ border: 'none !important' }}
+                >
                   <Button
-                    variant="contained"
+                    variant='contained'
                     component={Link}
                     fullWidth
-                    color="secondary"
-                    size="large"
+                    color='secondary'
+                    size='large'
                     href={`/symptoms/${symptom.id}`}
                     sx={symptoms.length !== index + 1 ? { mb: '8px' } : {}}
                   >
@@ -168,16 +188,18 @@ export default function SymptomRegion(props) {
               ))}
             </Stack>
           </div>
-          <div style={{
-            display: 'flex',
-            justifyContent: 'center',
-            marginTop: '32px',
-          }}>
+          <div
+            style={{
+              display: 'flex',
+              justifyContent: 'center',
+              marginTop: '32px',
+            }}
+          >
             <Button
               component={Link}
-              variant="outlined"
-              color="primary"
-              size="large"
+              variant='outlined'
+              color='primary'
+              size='large'
               href={`/regions/${props.member.name}`}
             >
               Search all tests

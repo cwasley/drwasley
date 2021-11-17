@@ -37,7 +37,7 @@ export default function OurRadiologists() {
   const [state, setState] = useState({
     expertise: false,
     services: false,
-    values: false
+    values: false,
   })
 
   const toggleList = (list) => {
@@ -48,7 +48,7 @@ export default function OurRadiologists() {
     setState({
       expertise: false,
       services: false,
-      values: false
+      values: false,
     })
   }
 
@@ -60,34 +60,42 @@ export default function OurRadiologists() {
     <Fragment>
       <Nav />
       <Offset />
-      <Container maxWidth="lg">
+      <Container maxWidth='lg'>
         <Box mt={4}>
-          <Typography align="center" variant="h4" component="h1" gutterBottom>
+          <Typography align='center' variant='h4' component='h1' gutterBottom>
             South Coast Radiology
           </Typography>
-          <Paper sx={{
-            width: '100%',
-            maxWidth: 600,
-            color: 'black',
-            justifyContent: "center",
-            alignContent: "center",
-            margin: "16px auto",
-          }}>
-            <Grid container justifyContent="center" alignContent="center">
+          <Paper
+            sx={{
+              width: '100%',
+              maxWidth: 600,
+              color: 'black',
+              justifyContent: 'center',
+              alignContent: 'center',
+              margin: '16px auto',
+            }}
+          >
+            <Grid container justifyContent='center' alignContent='center'>
               <Grid item xs={12}>
                 <ClickAwayListener onClickAway={handleClickAway}>
-                  <List
-                    component="nav"
-                  >
+                  <List component='nav'>
                     <ListItem button onClick={() => toggleList('expertise')}>
                       <ListItemIcon>
                         <EmojiObjectsIcon />
                       </ListItemIcon>
-                      <ListItemText primary="Areas of Expertise" />
-                      {state['expertise'] ? <ExpandLessIcon /> : <ExpandMoreIcon />}
+                      <ListItemText primary='Areas of Expertise' />
+                      {state['expertise'] ? (
+                        <ExpandLessIcon />
+                      ) : (
+                        <ExpandMoreIcon />
+                      )}
                     </ListItem>
-                    <Collapse in={state['expertise']} timeout="auto" unmountOnExit>
-                      <List component="div" disablePadding>
+                    <Collapse
+                      in={state['expertise']}
+                      timeout='auto'
+                      unmountOnExit
+                    >
+                      <List component='div' disablePadding>
                         {expertise.map((e, index) => (
                           <NestedListItem key={`expertise-${index}`}>
                             <ListItemText primary={e} />
@@ -99,11 +107,19 @@ export default function OurRadiologists() {
                       <ListItemIcon>
                         <WorkIcon />
                       </ListItemIcon>
-                      <ListItemText primary="Specialized Services" />
-                      {state['services'] ? <ExpandLessIcon /> : <ExpandMoreIcon />}
+                      <ListItemText primary='Specialized Services' />
+                      {state['services'] ? (
+                        <ExpandLessIcon />
+                      ) : (
+                        <ExpandMoreIcon />
+                      )}
                     </ListItem>
-                    <Collapse in={state['services']} timeout="auto" unmountOnExit>
-                      <List component="div" disablePadding>
+                    <Collapse
+                      in={state['services']}
+                      timeout='auto'
+                      unmountOnExit
+                    >
+                      <List component='div' disablePadding>
                         {services.map((s, index) => (
                           <NestedListItem key={`service-${index}`}>
                             <ListItemText primary={s} />
@@ -115,11 +131,15 @@ export default function OurRadiologists() {
                       <ListItemIcon>
                         <ThumbUpIcon />
                       </ListItemIcon>
-                      <ListItemText primary="Corporate Values" />
-                      {state['values'] ? <ExpandLessIcon /> : <ExpandMoreIcon />}
+                      <ListItemText primary='Corporate Values' />
+                      {state['values'] ? (
+                        <ExpandLessIcon />
+                      ) : (
+                        <ExpandMoreIcon />
+                      )}
                     </ListItem>
-                    <Collapse in={state['values']} timeout="auto" unmountOnExit>
-                      <List component="div" disablePadding>
+                    <Collapse in={state['values']} timeout='auto' unmountOnExit>
+                      <List component='div' disablePadding>
                         {values.map((v, index) => (
                           <NestedListItem key={`value-${index}`}>
                             <ListItemText primary={v} />
@@ -135,52 +155,70 @@ export default function OurRadiologists() {
           <Grid container spacing={3}>
             {radiologistData.map((item, index) => (
               <Grid item key={`image-${index}`} xs={12}>
-                <Card sx={{
-                  margin: "16px auto 16px auto",
-                  display: "flex",
-                }}>
+                <Card
+                  sx={{
+                    margin: '16px auto 16px auto',
+                    display: 'flex',
+                  }}
+                >
                   <CardMedia sx={{ maxHeight: 111 }}>
-                    <Image
-                      src={item.img}
-                      alt={item.title}
-                      layout="fixed"
-                    />
+                    <Image src={item.img} alt={item.title} layout='fixed' />
                   </CardMedia>
-                  <CardContent sx={{
-                    display: "flex",
-                    flexDirection: "column",
-                    width: '100%',
-                  }}>
+                  <CardContent
+                    sx={{
+                      display: 'flex',
+                      flexDirection: 'column',
+                      width: '100%',
+                    }}
+                  >
                     <Accordion sx={{ boxShadow: 'none' }} disableGutters>
-                      <AccordionSummary
-                        expandIcon={<ExpandMoreIcon />}
-                      >
-                        <Typography variant="h6" component="div">{item.title}</Typography>
+                      <AccordionSummary expandIcon={<ExpandMoreIcon />}>
+                        <Typography variant='h6' component='div'>
+                          {item.title}
+                        </Typography>
                       </AccordionSummary>
                       <AccordionDetails>
-                        <Typography variant="subtitle1" component="div">Certifications</Typography>
+                        <Typography variant='subtitle1' component='div'>
+                          Certifications
+                        </Typography>
                         <List>
                           {item.certifications.map((certification, index) => (
-                            <ListItem key={`certification-${index}`} disableGutters dense disablePadding>
+                            <ListItem
+                              key={`certification-${index}`}
+                              disableGutters
+                              dense
+                              disablePadding
+                            >
                               <ListItemIcon>
                                 <VerifiedIcon />
                               </ListItemIcon>
                               <ListItemText>
-                                <Typography variant="body2" component="div">{certification}</Typography>
+                                <Typography variant='body2' component='div'>
+                                  {certification}
+                                </Typography>
                               </ListItemText>
                             </ListItem>
                           ))}
                         </List>
                         <br />
-                        <Typography variant="subtitle1" component="div">Qualifications</Typography>
+                        <Typography variant='subtitle1' component='div'>
+                          Qualifications
+                        </Typography>
                         <List>
                           {item.education.map((line, index) => (
-                            <ListItem key={`education-${index}`} disableGutters dense disablePadding>
+                            <ListItem
+                              key={`education-${index}`}
+                              disableGutters
+                              dense
+                              disablePadding
+                            >
                               <ListItemIcon>
                                 <GradingIcon />
                               </ListItemIcon>
                               <ListItemText>
-                                <Typography variant="body2" component="div">{line}</Typography>
+                                <Typography variant='body2' component='div'>
+                                  {line}
+                                </Typography>
                               </ListItemText>
                             </ListItem>
                           ))}

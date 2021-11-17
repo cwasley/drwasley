@@ -22,11 +22,11 @@ import { titleCase } from '../../src/utils'
 export const getStaticProps = async (context) => {
   const test = await prisma.test.findFirst({
     where: {
-      id: parseInt(context.params.test, 10)
+      id: parseInt(context.params.test, 10),
     },
     include: {
-      member: true
-    }
+      member: true,
+    },
   })
   return { props: { test } }
 }
@@ -48,63 +48,62 @@ export default function Test(props) {
     <Fragment>
       <Nav />
       <Offset />
-      <Container maxWidth="md">
+      <Container maxWidth='md'>
         <Box mt={4}>
-          <Typography align="center" variant="h4" component="h1" gutterBottom>
+          <Typography align='center' variant='h4' component='h1' gutterBottom>
             {titleCase(test.name)}
           </Typography>
-          <Divider sx={{ marginBottom: '32px' }}/>
+          <Divider sx={{ marginBottom: '32px' }} />
           <Paper>
             <Table>
               <TableBody>
                 <TableRow>
-                  <TableCell variant="head">Body Region</TableCell>
+                  <TableCell variant='head'>Body Region</TableCell>
                   <TableCell>{test.member.name}</TableCell>
                 </TableRow>
                 <TableRow>
-                  <TableCell variant="head">Strengths</TableCell>
+                  <TableCell variant='head'>Strengths</TableCell>
                   <TableCell>{test.strengths}</TableCell>
                 </TableRow>
                 <TableRow>
-                  <TableCell variant="head">Limitations</TableCell>
+                  <TableCell variant='head'>Limitations</TableCell>
                   <TableCell>{test.limitations}</TableCell>
                 </TableRow>
                 <TableRow>
-                  <TableCell variant="head">Contraindications</TableCell>
+                  <TableCell variant='head'>Contraindications</TableCell>
                   <TableCell>{test.contraindications}</TableCell>
                 </TableRow>
                 <TableRow>
-                  <TableCell variant="head">CPT Code</TableCell>
+                  <TableCell variant='head'>CPT Code</TableCell>
                   <TableCell>{test.cpt_code}</TableCell>
                 </TableRow>
                 <TableRow>
-                  <TableCell variant="head">Exact format for order to be authorized</TableCell>
+                  <TableCell variant='head'>
+                    Exact format for order to be authorized
+                  </TableCell>
                   <TableCell>{test.format}</TableCell>
                 </TableRow>
                 <TableRow>
-                  <TableCell variant="head">Patient Preparation</TableCell>
+                  <TableCell variant='head'>Patient Preparation</TableCell>
                   <TableCell>{test.patient_prep}</TableCell>
                 </TableRow>
               </TableBody>
             </Table>
           </Paper>
-          <div style={{
-            display: 'flex',
-            justifyContent: 'flex-end',
-            flexWrap: 'wrap',
-            margin: "32px 0",
-          }}>
-            <Image
-              src={hand}
-              height={60}
-              width={60}
-              alt="skeleton image"
-            />
+          <div
+            style={{
+              display: 'flex',
+              justifyContent: 'flex-end',
+              flexWrap: 'wrap',
+              margin: '32px 0',
+            }}
+          >
+            <Image src={hand} height={60} width={60} alt='skeleton image' />
             <Button
               component={Link}
-              variant="contained"
-              color="secondary"
-              size="large"
+              variant='contained'
+              color='secondary'
+              size='large'
               href={`/contact/${test.id}`}
             >
               Order this test
